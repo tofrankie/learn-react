@@ -138,6 +138,6 @@ ReactDOM.render(<Parent />, appRoot)
 
 在父组件里捕获一个来自 portal 冒泡上来的事件，使之能够在开发时具有不完全依赖于 portal 的更为灵活的抽象。例如，如果你在渲染一个 `<Modal />` 组件，无论其是否采用 portal 实现，父组件都能够捕获其事件。
 
-## More
+## 参考链接
 
 - [传送门：React Portal](https://zhuanlan.zhihu.com/p/29880992)

@@ -2,9 +2,9 @@
 
 今天来介绍一下 `React.createElement()` 方法
 
-### React.createElement
+## React.createElement
 
-> 👉 [中文](https://zh-hans.reactjs.org/docs/react-api.html#createelement) or [英文](https://reactjs.org/docs/react-api.html#createelement)文档
+> [中文文档](https://zh-hans.reactjs.org/docs/react-api.html#createelement) | [英文文档](https://reactjs.org/docs/react-api.html#createelement)
 
 React 不强制要求使用 JSX，每个 JSX 元素只是调用 `React.createElement(type, [props], [...children])` 的语法糖。因此，使用 JSX 可以完成的任何事情都可以通过纯 JavaScript 完成。
 
@@ -49,7 +49,9 @@ ReactDOM.render(
 
 如果你想了解更多 JSX 转换为 JavaScript 的示例，可以尝试使用[在线 Babel 编译器](https://babeljs.io/repl/#?presets=react&code_lz=GYVwdgxgLglg9mABACwKYBt1wBQEpEDeAUIogE6pQhlIA8AJjAG4B8AEhlogO5xnr0AhLQD0jVgG4iAXyJA)。
 
-### 看源码
+## 源码
+
+### React.createElement 源码
 
 ```js
 function createElement(type, config, children) {
@@ -155,7 +157,7 @@ function createElement(type, config, children) {
 }
 ```
 
-接着看 ReactElement 源码：
+### ReactElement 源码
 
 ```js
 /**

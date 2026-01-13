@@ -72,19 +72,19 @@ function Counter(props) {
 }
 ```
 
-#### useEffect 做了什么？
+### useEffect 做了什么？
 
 通过使用这个 Hook，你可以告诉 React 组件需要在渲染后执行某些操作。React 会保存你传递的函数（我们将它称之为“effect”），并且在执行 DOM 更新之后调用它。在这个 effect 中，我们设置了 `document.title` 属性，不过我们也可以执行数据获取或调用其他命令式的 API。
 
-#### 为什么在函数内部调用 useEffect?
+### 为什么在函数内部调用 useEffect?
 
 将 `useEffect` 放在组件内部让我们可以在 effect 中直接访问 `count` state 变量（或其他 props）。我们不需要特殊的 API 来读取它 —— 它已经保存在函数作用域中。Hook 使用了 JavaScript 闭包机制，而不用在 JavaScript 已经提供了解决方案的情况下，还引入特定的 React API。
 
-#### useEffect 会在每次渲染后都执行吗？
+### useEffect 会在每次渲染后都执行吗？
 
 是的，默认情况下，它在**第一次渲染之后**和**每次更新之后**都会执行。（下面会谈到如何控制它。）你可能会更容易接受 effect 发生在“渲染之后”这种概念，不用再去考虑“挂载”还是“更新”（类组件中会分为：挂载、更新、卸载三个阶段）。React 保证了每次运行 effect 的同时，DOM 都已经更新完毕。
 
-#### 详细说明
+### 详细说明
 
 现在我们已经对 effect 有了大致了解，下面这些代码应不难看懂了：
 
@@ -137,7 +137,7 @@ const throttle = (func, wait) => {
 }
 ```
 
-#### Class 示例
+### Class 示例
 
 ```jsx
 import React, { Component } from 'react'
@@ -172,7 +172,7 @@ class Resize extends Component {
 
 你会注意到 `componentDidMount` 和 `componentWillUnmount` 之间相互对应。使用生命周期函数迫使我们拆分这些逻辑代码，即使这两部分代码都作用于相同的副作用。
 
-#### Hook 示例
+### Hook 示例
 
 ```jsx
 import React, { useEffect } from 'react'
@@ -200,11 +200,11 @@ function Resize(props) {
 }
 ```
 
-#### 为什么要在 effect 中返回一个函数？
+### 为什么要在 effect 中返回一个函数？
 
 这是 effect 可选的清除机制。每个 effect 都可以返回一个清除函数。如此可以将添加和移除监听器的逻辑放在一起。它们属于 effect 的一部分。
 
-#### React 何时清除 effect？
+### React 何时清除 effect？
 
 React 会在组件卸载的时候执行清除操作。正如之前学到的，effect 在每次渲染的时候都会执行。这就是为什么 React 会在执行当前 effect 之前对上一个 effect 进行清除。我们稍后将讨论为什么这将助于避免 bug 以及如何在遇到性能问题时跳过此行为。
 
@@ -212,7 +212,7 @@ React 会在组件卸载的时候执行清除操作。正如之前学到的，ef
 
 > 除此之外，请记得 React 会等待浏览器完成画面渲染之后才会延迟调用 useEffect，因此会使得额外操作很方便。
 
-#### 使用多个 Effect 的提示
+### 使用多个 Effect 的提示
 
 使用 Hook 其中一个目的就是要解决 class 中生命周期函数经常包含不相关的逻辑，但又把相关逻辑分离到了几个不同方法中的问题。下述代码是将前述示例中的计数器和好友在线状态指示器逻辑组合在一起的组件：
 
@@ -255,7 +255,7 @@ function Counter(props) {
 
 Hook 允许我们按照代码的用途分离他们， 而不是像生命周期函数那样。**React 将按照 effect 声明的顺序依次调用组件中的每一个 effect**。
 
-#### 解释：为什么每次更新的时候都要运行 Effect
+### 解释：为什么每次更新的时候都要运行 Effect
 
 如果你已经习惯了使用 class，那么你或许会疑惑为什么 effect 的清除阶段在每次重新渲染时都会执行，而不是只在卸载组件的时候执行一次。
 
@@ -322,7 +322,7 @@ function Counter(props) {
 
 useEffect 默认就会在调用一个新的 effect 之前对前一个 effect 进行清理。
 
-#### 提示：通过跳过 Effect 进行性能优化
+### 提示：通过跳过 Effect 进行性能优化
 
 在某些情况下，每次渲染后都执行清理或执行 effect 可能会导致性能问题。在 class 组件中，我们可以通过在 ComponentDidUpdate 中添加 prevProps 或 prevState 的比较逻辑解决：
 

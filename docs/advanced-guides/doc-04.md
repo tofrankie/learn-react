@@ -26,7 +26,7 @@ Refs 提供了一种方式，允许我们访问 DOM 节点或在 render 方法�
 - React 16.3 以下建议使用回调形式的 Refs
 - 还有一种过时的 API：String 类型的 Refs
 
-#### 1. React.createRef()
+### 1. React.createRef()
 
 Refs 是使用 `React.createRef()` 创建的，并通过 `ref` 属性附加到 React 元素。在构造组件时，通常将 Refs 分配给实例属性，以便可以在整个组件中引用它们。
 
@@ -49,7 +49,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-#### 2. 访问 Ref
+### 2. 访问 Ref
 
 上面示例中 node 对应 `<div />` 节点。
 
@@ -65,11 +65,11 @@ const node = this.myRef.current
 
 - **你不能在“函数组件”上使用 `ref` 属性，因为它们没有实例。**
 
-#### 3. 举例
+### 3. 举例
 
 就以上几种类型，举些例子...
 
-##### 为 DOM 元素添加 ref
+#### 为 DOM 元素添加 ref
 
 ```jsx
 import React, { Component, createRef } from 'react'
@@ -98,7 +98,7 @@ class MyInput extends Component {
 
 > **React 会在组件挂载时给 `current` 属性传入 DOM 元素，并在组件卸载时传入 `null` 值。`ref` 会在 `componentDidMount()` 和 `componentDidUpdate()` 钩子触发前更新。**
 
-##### 为 class 组件添加 Ref
+#### 为 class 组件添加 Ref
 
 ```jsx
 import React, { Component, createRef } from 'react'
@@ -139,7 +139,7 @@ class Child extends Component {
 
 > 注意，若 ref 绑定到 React 组件上的话，该组件必须是 class 组件才有效。
 
-##### Refs 与 函数组件
+#### Refs 与 函数组件
 
 默认情况下，你不能在函数组件上使用 ref 属性，因为它们没有实例。
 
@@ -171,7 +171,7 @@ function Child() {
 
 想要在函数组件中使用 ref，你可以使用 [forwardRef](https://react.docschina.org/docs/forwarding-refs.html)（可与 [useImperativeHandle](https://react.docschina.org/docs/hooks-reference.html#useimperativehandle) 结合使用），或者可以将该组件转化为 class 组件。
 
-##### 在函数组件内部使用 ref 属性
+#### 在函数组件内部使用 ref 属性
 
 不管怎样，你可以在函数组件内部使用 ref 属性，只要它指向一个 DOM 元素或 class 组件：
 

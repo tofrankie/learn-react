@@ -146,7 +146,7 @@ function Columns() {
 
 根据 W3C 的要求，一个合法的 `<table>`，`<tr>` 的子元素必须是 `<td>`。而 React 这种组件的写法直接破坏了 `<table>` 结构，最终也得不到我们的预期结果。
 
-> 一个合法的 <table> 结构应该是这样的，`table > thead/tbody/tfoot > tr > td > div/other`。
+> 一个合法的 `<table>` 结构应该是这样的，`table > thead/tbody/tfoot > tr > td > div/other`。
 
 如果按照 React 16.x 提供的新特性，可以轻松解决...
 
@@ -167,7 +167,7 @@ function Columns() {
 
 自 React 16.2 起，开始支持 React.Fragment 语法。前面提到该特性是对数组形式的一种增强用法。
 
-#### 语法
+### 语法
 
 它的语法非常简单，把它是 React 内置的一个 React 组件。
 
@@ -218,7 +218,7 @@ function Glossary(props) {
 
 > JSX 中的片段语法受到现有技术的启发，例如 [E4X](https://developer.mozilla.org/en-US/docs/Archive/Web/E4X/E4X_for_templating) 中的 `XMLList() <></>` 构造函数。使用一对空标签是为了表示它不会向 DOM 添加实际元素的想法。
 
-#### 对比
+### 对比
 
 回到文章开头的示例，要渲染这样一段真实 DOM 节点。
 
@@ -296,7 +296,7 @@ function MyComponent() {
 
 以上这些限制 Fragment 统统都没有，我们就按正常的思维去编写 DOM 节点就好了。
 
-## 四、References
+## 四、参考链接
 
 - [Fragments](https://react.docschina.org/docs/fragments.html)
 - [React v16.0](https://reactjs.org/blog/2017/09/26/react-v16.0.html#new-render-return-types-fragments-and-strings)

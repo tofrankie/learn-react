@@ -14,7 +14,7 @@ console.log(doubled)
 
 在 React 中，把数组转化为[元素](https://github.com/tofrankie/learn-react/blob/main/docs/doc-03.md)列表的过程是很相似的。
 
-### 渲染多个组件
+## 渲染多个组件
 
 你可以使用 `{}` 在 JSX 内构建一个[元素集合](https://react.docschina.org/docs/introducing-jsx.html#embedding-expressions-in-jsx)。
 
@@ -33,7 +33,7 @@ ReactDOM.render(<ul>{listItems}</ul>, document.getElementById('root'))
 
 这段代码生成了一个 1 到 5 的项目符号列表。
 
-### 基础列表组件
+## 基础列表组件
 
 通常你需要在一个组件中渲染列表。
 
@@ -75,7 +75,7 @@ ReactDOM.render(
 )
 ```
 
-### key
+## key
 
 `key` 帮助 React 识别哪些元素改变了，比如添加或删除。因此你应当给数组中的每一个元素赋予一个确定的标识。
 
@@ -103,7 +103,7 @@ const todoItems = todos.map((todo, index) => (
 
 要是你有兴趣了解更多的话，这里有一篇文章[深入解释为什么 key 是必须的](https://react.docschina.org/docs/reconciliation.html#recursing-on-children)可以参考。
 
-### 用 key 提取组件
+## 用 key 提取组件
 
 元素的 `key` 只有放在就近的数组上下文中才有意义。
 
@@ -169,7 +169,7 @@ ReactDOM.render(
 
 > **一个好的经验法则是：在 `map()` 方法中的元素需要设置 `key` 属性。**
 
-### key 只是在兄弟节点之间必须唯一
+## key 只是在兄弟节点之间必须唯一
 
 数组元素中使用的 `key` 在其兄弟节点之间应该是独一无二的。然而，它们不需要是全局唯一的。当我们生成两个不同的数组时，我们可以使用相同的 `key` 值：
 
@@ -215,7 +215,7 @@ const content = posts.map(post => <Post key={post.id} id={post.id} title={post.t
 
 上面例子中，`Post` 组件可以读出 `props.id`，但是不能读出 `props.key`。除了 `key` 之外，不能被 `props` 读出的属性还有：`ref`、`__self`、`__source`。
 
-### 在 JSX 中嵌入 map()
+## 在 JSX 中嵌入 map()
 
 在上面的例子中，我们声明了一个单独的 `listItems` 变量并将其包含在 JSX 中：
 

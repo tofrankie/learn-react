@@ -1,6 +1,6 @@
 # 组件 & Props
 
-### 函数组件与 class 组件
+## 函数组件与 class 组件
 
 定义组件最简单的方式就是编写 JavaScript 函数：
 
@@ -24,7 +24,7 @@ class Welcome extends React.Component {
 
 上述两个组件在 React 里是等效的。
 
-### 渲染组件
+## 渲染组件
 
 之前，我们遇到的 React 元素都只是 DOM 标签：
 
@@ -71,11 +71,11 @@ ReactDOM.render(element, document.getElementById('root'))
 >
 > 你可以在[深入 JSX](https://react.docschina.org/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized) 中了解更多关于此规范的原因。
 
-### 组合组件
+## 组合组件
 
 我们可将一些复杂的组件，可以抽象出任意层次的细节，拆分为更小的组件。
 
-### Props 的只读性（Read-Only）
+## Props 的只读性（Read-Only）
 
 组件无论是使用函数声明还是通过 class 声明，都决不能修改自身的 props。来看下这个 sum 函数：
 

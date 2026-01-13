@@ -41,7 +41,7 @@ React.createElement('div', {
 
 ## 一、指定 React 元素类型
 
-#### React 必须在作用域内
+### React 必须在作用域内
 
 ```jsx
 // jsx
@@ -69,7 +69,7 @@ module.exports = {
 }
 ```
 
-#### 在 JSX 类型中使用点语法
+### 在 JSX 类型中使用点语法
 
 我们知道 JSX 语法的类型常见用法有两种：
 
@@ -117,7 +117,7 @@ function Foo() {
 }
 ```
 
-#### 用户定义的组件必须以大写字母开头
+### 用户定义的组件必须以大写字母开头
 
 假设不遵循以上大小写的写法，可能会警告，且不会正常渲染。例如：
 
@@ -152,7 +152,7 @@ function Foo() {
 
 > 点语法可以支持以小写字母开头的标识符，但还是不推荐。
 
-#### 在运行时选择类型
+### 在运行时选择类型
 
 不能将通用表达式作为 React 元素类型，例如：
 
@@ -201,7 +201,7 @@ function Foo(props) {
 
 - 属性展开
 
-#### JavaScript 表达式作为 Props
+### JavaScript 表达式作为 Props
 
 ```jsx
 // ✅ 正确
@@ -210,7 +210,7 @@ function Foo(props) {
 
 请注意，`if`、`for` 等属于语句，不是 JavaScript 表达式，因此不能在 JSX 中直接使用。
 
-#### 字符串字面量
+### 字符串字面量
 
 ```jsx
 <Foo bar="hello" />
@@ -241,7 +241,7 @@ function Foo() {
 
 > 想设置 `dangerouslySetInnerHTML` 时，只需要向其传递包含 `key` 为 `__html` 的对象即可。
 
-#### Props 默认值为 “True”
+### Props 默认值为 “True”
 
 ```jsx
 <Foo bar />
@@ -251,7 +251,7 @@ function Foo() {
 
 通常，我们不建议不传递 value 给 prop，因为这可能与 ES6 对象简写混淆，`{ foo }` 是 `{ foo: foo }` 的简写，而不是 `{ foo: true }`。这样实现只是为了保持和 HTML 中标签属性的行为一致。
 
-#### 属性展开
+### 属性展开
 
 ```jsx
 const props = { bar: 1, baz: 2 }
@@ -282,11 +282,11 @@ function Bar(props) {
 
 包含在开始和结束标签之间的 JSX 表达式内容将作为特定属性 `props.children` 传递给外层组件。
 
-#### 字符串字面量
+### 字符串字面量
 
 若子元素为字符串字面量的话，JSX 会做这些处理：**移除行首尾的空格以及空行。与标签相邻的空行均会被删除，文本字符串之间的新行会被压缩为一个空格。**
 
-#### 布尔类型、Null 以及 Undefined 将会忽略
+### 布尔类型、Null 以及 Undefined 将会忽略
 
 `false`, `null`, `undefined`, and `true` 是合法的子元素。但它们并不会被渲染。以下的 JSX 表达式渲染结果相同：
 

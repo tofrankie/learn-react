@@ -20,7 +20,7 @@
 
 ## 基础 Hook
 
-#### 1. useState
+### 1. useState
 
 ```jsx
 const [state, useState] = useState(initialState)
@@ -89,7 +89,7 @@ const [count, setCount] = useState(() => {
 
 需要注意的是，React 可能仍需要在跳过渲染前渲染该组件。不过由于 React 不会对组件树的“深层”节点进行不必要的渲染，所以大可不必担心。如果你在渲染期间执行了高开销的计算，则可以使用 `useMemo` 来进行优化。
 
-#### 2. useEffect
+### 2. useEffect
 
 ```jsx
 useEffect(didMount)
@@ -161,7 +161,7 @@ useEffect(() => {
 
 依赖项数组不会作为参数传给 effect 函数。虽然从概念上来说它表现为：所有 effect 函数中引用的值都应该出现在依赖项数组中。未来编译器会更加智能，届时自动创建数组将成为可能。
 
-#### 3. useContext
+### 3. useContext
 
 ```jsx
 const value = useContext(MyContext)
@@ -229,7 +229,7 @@ function ThemedButton() {
 
 以下介绍的 Hook，有些是上一节中基础 Hook 的变体，有些则仅在特性情况下会用到。
 
-#### 1. useReducer
+### 1. useReducer
 
 ```jsx
 const [state, dispatch] = useReducer(reducer, initialArg, init)
@@ -307,7 +307,7 @@ function Counter({ initialCount }) {
 
 需要注意的是，React 可能仍需要在跳过渲染前再次渲染该组件。不过由于 React 不会对组件树的“深层”节点进行不必要的渲染，所以大可不必担心。如果你在渲染期间执行了高开销的计算，则可以使用 `useMemo` 来进行优化。
 
-#### 2. useCallback
+### 2. useCallback
 
 ```jsx
 const memoizedCallback = useCallback(() => {
@@ -327,7 +327,7 @@ const memoizedCallback = useCallback(() => {
 >
 > 我们推荐启用 eslint-plugin-react-hooks 中的 exhaustive-deps 规则。此规则会在添加错误依赖时发出警告并给出修复建议。
 
-#### 3. useMemo
+### 3. useMemo
 
 ```jsx
 const memoizedValue = useMemo(() => computedExpensiveValue(a, b), [a, b])
@@ -349,7 +349,7 @@ const memoizedValue = useMemo(() => computedExpensiveValue(a, b), [a, b])
 >
 > 我们推荐启用 eslint-plugin-react-hooks 中的 exhaustive-deps 规则。此规则会在添加错误依赖时发出警告并给出修复建议。
 
-#### 4. useRef
+### 4. useRef
 
 ```jsx
 const refContainer = useRef(initialValue)
@@ -384,7 +384,7 @@ function TextInputWithFocusButton() {
 
 请记住，当 ref 对象内容发生变化时，`useRef` 并不会通知你。变更 `current` 属性不会引发组件重新渲染。如果想要在 React 绑定或解绑 DOM 节点的 ref 时运行某些代码，则需要使用[回调 ref](https://react.docschina.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node) 来实现。
 
-#### 5. useImperativeHandle
+### 5. useImperativeHandle
 
 `useImperativeHandle` 可以让你在使用 `ref` 时自定义暴露给父组件的实例值。在大多数情况下，应当避免使用 ref 这样的命令式代码。`useImperativeHandle` 应当与 `forwardRef` 一起使用：
 
@@ -404,7 +404,7 @@ FancyInput = forwardRef(FancyInput)
 
 在本例中，渲染 `<FancyInput ref={inputRef} />` 的父组件可以调用 `inputRef.current.focus()`。
 
-#### 6. useLayoutEffect
+### 6. useLayoutEffect
 
 其函数签名与 `useEffect` 相同，但他会在所有的 DOM 变更之后同步调用 effect。可以使用它来读取 DOM 布局并同步触发渲染。在浏览器执行绘制之前，`useLayoutEffect` 内部的更新计划被同步属性。
 
@@ -418,7 +418,7 @@ FancyInput = forwardRef(FancyInput)
 >
 > 若要从服务端渲染的 HTML 中排除依赖布局 effect 的组件，可以通过使用 `showChild && <Child />` 进行条件渲染，并使用 `useEffect(() => { setShowChild(true) }, [])` 延迟展示组件。这样，在客户端渲染完成之前，UI 就不会像之前那样显示错乱了。
 
-#### 7. useDebugValue
+### 7. useDebugValue
 
 ```jsx
 useDebugValue(value)

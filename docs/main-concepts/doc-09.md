@@ -14,7 +14,7 @@
 
 此表单具有默认的 HTML 表单行为，即在用户提交表单后浏览到新页面。如果你在 React 中执行相同的代码，它依然有效。但大多数情况下，使用 JavaScript 函数可以很方便地处理表单的提交，同时还可以访问用户填写的表单数据。实现这种效果的标准方式是使用**受控组件**。
 
-### 受控组件
+## 受控组件
 
 在 HTML 中，表单元素（如 `<input>`、`<textarea>`、`<select>`）之类的表单元素通常自己维护 state，并根据用户输入进行更新。而在 React 中，可变状态（mutable state）通常保存在组件的 state 属性中，并且只能通过使用 `setState()` 来更新。
 
@@ -59,7 +59,7 @@ class NameForm extends React.Component {
 
 对于受控组件来说，输入的值始终由 React 的 state 驱动。你也可以将 `value` 传递给其他 UI 元素，或者通过其他事件处理函数重置，但这意味着你需要编写更多的代码。
 
-### textarea 标签
+## textarea 标签
 
 在 HTML 中，`<textarea>` 元素通过其子元素定义其文本：
 
@@ -106,7 +106,7 @@ class EssayForm extends React.Component {
 
 请注意，`this.state.value` 初始化于构造函数中，因此文本区域默认有初值。
 
-### select 标签
+## select 标签
 
 在 HTML 中，`<select>` 创建下拉列表标签。例如，如下 HTML 创建了水果相关的下拉列表：
 
@@ -169,7 +169,7 @@ class FlavorForm extends React.Component {
 <select multiple={true} value={['B', 'C']}>
 ```
 
-### 文件 input 标签
+## 文件 input 标签
 
 在 HTML 中，`<input type="file">` 允许用户从存储设备中选择一个或多个文件，将其上传到服务器，或通过使用 JavaScript 的 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) 进行控制。
 
@@ -179,7 +179,7 @@ class FlavorForm extends React.Component {
 
 因为它的 `value` 只读，所以它是 React 中的一个**非受控组件**。将其他非受控组件在[后续文档](https://react.docschina.org/docs/uncontrolled-components.html#the-file-input-tag)中一起讨论。
 
-### 处理多个输入
+## 处理多个输入
 
 当你需要处理多个 `input` 元素时，我们可以给每个元素添加 `name` 属性，并让处理函数根据 `event.target.name` 的值选择要执行的操作。
 
@@ -252,7 +252,7 @@ this.setState(partialState)
 
 另外，由于 `setState()` 自动[将部分 state 合并到当前 state](https://react.docschina.org/docs/state-and-lifecycle.html#state-updates-are-merged)，只需调用它更改部分 state 即可。
 
-### 受控输入空值
+## 受控输入空值
 
 在[受控组件](https://react.docschina.org/docs/forms.html#controlled-components)上指定 `value` 的 `prop` 会阻止用户更改输入。如果你指定了 `value`，但输入仍可编辑，则可能是你意外地将 `value` 设置为 `undefined` 或 `null`。
 
@@ -266,10 +266,10 @@ setTimeout(function () {
 }, 1000)
 ```
 
-### 受控组件的替代品
+## 受控组件的替代品
 
 有时使用受控组件会很麻烦，因为你需要为数据变化的每种方式都编写事件处理函数，并通过一个 React 组件传递所有的输入 state。当你将之前的代码库转换为 React 或将 React 应用程序与非 React 库集成时，这可能会令人厌烦。在这些情况下，你可能希望使用[非受控组件](https://react.docschina.org/docs/uncontrolled-components.html)，这是实现输入表单的另一种方式。
 
-### 成熟的解决方案
+## 成熟的解决方案
 
 如果你想寻找包含验证、追踪访问字段以及处理表单提交的完整解决方案，使用 [Formik](https://formik.org/) 是不错的选择。然而，它也是建立在受控组件和管理 state 的基础之上 ——— 所以不要忽视学习它们。

@@ -50,7 +50,7 @@ ReactDOM.render(<Clock />, document.getElementById('root'))
 
 `state` 与 `props` 类似，但是 `state` 是私有的，并且完全受控于当前组件。
 
-### 将函数组件转换为 class 组件
+## 将函数组件转换为 class 组件
 
 通过以下五部将 `Clock` 的函数组件转成 `class` 组件：
 
@@ -77,7 +77,7 @@ class Clock extends React.Component {
 
 每次组件更新时，`render` 方法都会被调用，但只要在相同的 DOM 节点中渲染 `<Clock />`，就仅有一个 `Clock` 组件的 `class` 实例被创建使用。这就使得我们可以使用如 `state` 或生命周期方法等很多其他特性。
 
-### 向 class 组件中添加局部的 state
+## 向 class 组件中添加局部的 state
 
 我们通过以下三步将 `date` 从 `props` 移动到 `state` 中：
 
@@ -150,7 +150,7 @@ ReactDOM.render(<Clock />, document.getElementById('root'))
 
 接下来，我们会设置 `Clock` 的计时器并每秒更新它。
 
-### 将生命周期方法添加到 Class 中
+## 将生命周期方法添加到 Class 中
 
 在具有许多组件的应用程序中，当组件被销毁时释放所占用的资源是非常重要的。
 
@@ -253,11 +253,11 @@ ReactDOM.render(<Clock />, document.getElementById('root'))
 4. 浏览器每秒都会调用一次 `tick()` 方法。在这个方法之中，`Clock` 组件会通过调用 `setState()` 来计划进行一次 UI 更新。得益于 `setState()` 的调用，React 能够知道 `state` 已经改变了，然后重新调用 `render()` 方法来确定页面上该显示什么。这一次，`render()` 方法中的 `this.state.date` 就不一样了，如此以来就会渲染输出更新过的时间。React 也会相应地更新 DOM。
 5. 一旦 `Clock` 组件从 DOM 中被移除，React 就会调用 `componentWillUnmount()` 生命周期方法，这样计时器就停止了。
 
-### 正确地使用 State
+## 正确地使用 State
 
 关于 `setState()` 你应该了解三件事：
 
-##### 1. 不要直接修改 State
+### 1. 不要直接修改 State
 
 例如，此代码不会重新渲染组件：
 
@@ -284,7 +284,7 @@ componentDidMount() {
 }
 ```
 
-##### 2. State 的更新可能是异步的
+### 2. State 的更新可能是异步的
 
 出于性能考虑，React 可能会把多个 `setState()` 调用合并成一个调用。
 
@@ -319,7 +319,7 @@ this.setState(function(state, props) {
 }})
 ```
 
-##### 3. State 的更新会被合并
+### 3. State 的更新会被合并
 
 当你调用 `setState()` 的时候，React 会把你提供的对象合并到当前的 `state`。
 
@@ -355,7 +355,7 @@ componentDidMount() {
 
 这里的合并是浅合并，所以 `this.setState({ comments })` 完整保留了 `this.state.posts`，但是完全替换了 `this.state.comments`。
 
-### 数据是向下流动的
+## 数据是向下流动的
 
 不管是父组件或是子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是 `class` 组件。
 

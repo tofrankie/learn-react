@@ -1,6 +1,6 @@
 # 代码分隔
 
-### 打包
+## 打包
 
 大多数 React 应用都会使用 [Webpack](https://webpack.docschina.org/)、[Rollup](https://rollupjs.org/guide/en/)、[Browserify](https://browserify.org/) 这类的构建工具来打包文件。打包是一个将文件引入合并到一个单独文件的过程，最终形成一个“bundle”。接着在页面上引入该 bundle，整个应用即可一次性加载。
 
@@ -38,7 +38,7 @@ console.log(add(16, 26)) // 42
 
 如果你没有使用这类工具，你就需要自己来进行配置。例如，查看 Webpack 文档上的[安装](https://webpack.docschina.org/guides/installation/)和[入门教程](https://webpack.docschina.org/guides/getting-started/)。
 
-### 代码分割
+## 代码分割
 
 打包是个非常棒的技术，但随着你的应用增长，你的代码包也随之增长。尤其是在整合了体积巨大的第三方库的情况下。你需要关注你代码中所包含的代码，以避免因体积过大而导致加载时间过长。
 
@@ -46,7 +46,7 @@ console.log(add(16, 26)) // 42
 
 对你的应用进行代码分割能够帮助你“懒加载”当前用户所需要的内容，能够显著地提高你的应用性能。尽管并没有减少应用整体的代码体积，但你可以避免加载用户永远不需要的代码，并在初始加载的时候减少所需加载的代码量。
 
-### import()
+## import()
 
 在你的应用中引入代码分隔的最佳方式是通过动态 `import()` 语法。
 
@@ -73,7 +73,7 @@ import('./math.js').then(math => {
 
 当你使用 [Babel](https://babeljs.io/) 时，你要确保 Babel 能够解析动态 `import` 语法而不是将其进行转换。对于这一要求你需要 [@babel/plugin-syntax-dynamic-import](https://classic.yarnpkg.com/en/package/@babel/plugin-syntax-dynamic-import) 插件。
 
-### React.lazy
+## React.lazy
 
 > 注意：`React.lazy` 和 `Suspense` 技术还不支持服务端渲染。如果你想要服务端渲染的应用中使用，我们推荐 [Loadable Compoents](https://github.com/gregberge/loadable-components) 这个库。它有一个很棒的[服务端渲染打包指南](https://loadable-components.com/docs/server-side-rendering/)。
 

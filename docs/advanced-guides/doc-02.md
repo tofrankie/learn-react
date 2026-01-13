@@ -91,7 +91,7 @@ class ThemeButton2 extends Component {
 
 ## Context API
 
-#### React.createContext
+### React.createContext
 
 ```jsx
 const MyContext = React.createContext(defaultValue)
@@ -101,7 +101,7 @@ const MyContext = React.createContext(defaultValue)
 
 **只有当组件树所处的树中没有匹配到 `Provider` 时，其 `defaultValue` 参数才会生效**。这有助于在不使用 `Provider` 包装组件的情况下对组件进行测试。注意：将 `undefined` 或 `null` 传递给 `Provider` 的 `value` 时，消费组件的 `defaultValue` 不会生效。
 
-#### Context.Provider
+### Context.Provider
 
 ```jsx
 <MyContext.Provider value={/* 某个值 */}>
@@ -119,7 +119,7 @@ Provider 接收一个 `value` 属性，传递给消费组件。一个 Provider �
 
 > 注意，当传递对象给 `value` 时，检测变化的方式会导致一些问题：详见[注意事项](https://react.docschina.org/docs/context.html#caveats)。
 
-#### Class.contextType
+### Class.contextType
 
 ```jsx
 class MyClass extends React.Component {
@@ -145,7 +145,7 @@ MyClass.contextType = MyContext
 
 > 你只能通过该 API 订阅单一 context。如果你想订阅多个，阅读[使用多个 Context](https://react.docschina.org/docs/context.html#consuming-multiple-contexts) 章节。
 
-#### Context.Consumer
+### Context.Consumer
 
 ```
 <MyContext.Consumer>
@@ -161,7 +161,7 @@ MyClass.contextType = MyContext
 
 > 注意，想要了解更多关于“函数作为子元素（function as a child）”模式，详见[render props](https://react.docschina.org/docs/render-props.html)
 
-#### Context.displayName
+### Context.displayName
 
 context 对象接受一个名为 `displayName` 的 property，类型为字符串。React DevTools 使用该字符串来确定 context 要显示的内容。
 
@@ -183,7 +183,7 @@ MyContext.displayName = 'customName'
 
 ## 示例
 
-#### 动态更新 Context
+### 动态更新 Context
 
 使用动态的 Context，并进行更新。
 
