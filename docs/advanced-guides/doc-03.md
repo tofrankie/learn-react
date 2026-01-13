@@ -10,10 +10,10 @@
 
 > 注意，错误边界无法捕获以下场景中产生的错误：
 >
-> * 事件处理
-> * 异步代码（例如 `setTimeout` 或 `requestAnimationFrame` 回调函数）
-> * 服务端渲染
-> * 它自身抛出来的错误（并非它的子组件）
+> - 事件处理
+> - 异步代码（例如 `setTimeout` 或 `requestAnimationFrame` 回调函数）
+> - 服务端渲染
+> - 它自身抛出来的错误（并非它的子组件）
 
 如果一个 class 组件中定义了 `static getDerivedStateFromError()` 或 `componentDidCatch()` 这两个生命周期方法中的任意一个（或两个）时，那么它就变成了一个错误边界。当抛出错误后，请使用 `static getDerivedStateFromError()` 渲染备用 UI，使用 `componentDidCatch()` 打印错误信息。
 
@@ -32,7 +32,7 @@ class ErrorBoundary extends Component {
   state = {
     hasError: false,
     error: null,
-    errorInfo: null
+    errorInfo: null,
   }
 
   // componentDidCatch 在 Commit 阶段被调用，因此允许执行副作用
@@ -98,20 +98,16 @@ TypeError: Cannot set property 'name' of undefined
 
 通常：
 
-* `static getDerivedStateFromError()`: 通过更新 state 的方式，来渲染降级 UI
-* `componentDidCatch()`: 打印错误，常用于将错误上传监控服务器等
-
-
-
+- `static getDerivedStateFromError()`: 通过更新 state 的方式，来渲染降级 UI
+- `componentDidCatch()`: 打印错误，常用于将错误上传监控服务器等
 
 ## 注意点
 
-* 只有 Class 组件才可以成为错误组件。多数情况下，你只需要声明一次错误边界组件，并在整个应用中使用它。
+- 只有 Class 组件才可以成为错误组件。多数情况下，你只需要声明一次错误边界组件，并在整个应用中使用它。
 
-* 错误边界仅可以捕获其子组件的错误，无法捕获组件自身的错误。
+- 错误边界仅可以捕获其子组件的错误，无法捕获组件自身的错误。
 
-* 自 React 16 起，任何未被错误边界捕获的错误将会导致整个 React 组件树被卸载。
-
+- 自 React 16 起，任何未被错误边界捕获的错误将会导致整个 React 组件树被卸载。
 
 ## 关于事件处理程序
 

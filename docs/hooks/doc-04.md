@@ -2,7 +2,6 @@
 
 推荐一个仓库，里面包含很多有趣的自定义 Hooks：[react-use](https://github.com/streamich/react-use)。
 
-
 自定义 Hook 是一种自然遵循 Hook 设计的约定，而并不是 React 的特性。
 
 #### 自定义 Hook 必须以 “use” 开头吗？
@@ -16,4 +15,3 @@
 #### 自定义 Hook 如何获取独立的 state？
 
 每次调用 Hook，它都会获取独立的 state。由于我们直接调用了 `useFriendStatus`，从 React 的角度来看，我们的组件只是调用了 `useState` 和 `useEffect`。 正如我们在之前章节中了解到的一样，我们可以在一个组件中多次调用 `useState` 和 `useEffect`，它们是完全独立的。
-

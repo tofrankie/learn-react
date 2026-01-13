@@ -15,7 +15,7 @@ React.createElement(
   MyButton,
   {
     color: 'blue',
-    shadowSize: 2
+    shadowSize: 2,
   },
   'Click Me'
 )
@@ -30,18 +30,14 @@ React.createElement(
 会编译为:
 
 ```jsx
-React.createElement(
-  'div',
-  {
-    className: 'sidebar'
-  }
-)
+React.createElement('div', {
+  className: 'sidebar',
+})
 ```
 
 > 这也就是为什么旧版 React，在编写每一个 jsx 文件时，都要引入 `import React from 'react'` 的原因。可以通过 Webpack 配置无需每个都引入。
 >
 > React 17 有一种全新的 JSX 编译方式，可以不用每个文件都引入。
-
 
 ## 一、指定 React 元素类型
 
@@ -67,15 +63,13 @@ module.exports = {
   plugins: [
     // 自动加载模块，而不必到处 import 或 require 。
     new webpack.ProvidePlugin({
-      React: 'React'
+      React: 'React',
     }),
-  ]
+  ],
 }
 ```
 
-
 #### 在 JSX 类型中使用点语法
-
 
 我们知道 JSX 语法的类型常见用法有两种：
 
@@ -95,9 +89,9 @@ function Foo() {
 
 这里类型是指 `<` 后面这个元素（即 `div` 或 `Bar`），通常：
 
-* **小写字母开头**的元素表示 HTML 内置的标签，如 `<div>`，它会生成相应的字符串 `'div'` 传递给 `React.createElement()` 作为第一个参数，即 `React.createElement('div')`。
+- **小写字母开头**的元素表示 HTML 内置的标签，如 `<div>`，它会生成相应的字符串 `'div'` 传递给 `React.createElement()` 作为第一个参数，即 `React.createElement('div')`。
 
-* **大写字母开头**的元素表示引入或自定义的组件。如 `<Bar />` 会编译为 `React.createElement(Bar)`
+- **大写字母开头**的元素表示引入或自定义的组件。如 `<Bar />` 会编译为 `React.createElement(Bar)`
 
 > 我们理应保持这种习惯。就好比如 ES6 class 语法，其名称应习惯地采用以大写字母开头的标识符。
 
@@ -110,7 +104,7 @@ const Components = {
   CompA: () => <div>这是函数组件</div>,
   CompB: class CompB extends Component {
     render = () => <div>这是类组件</div>
-  }
+  },
 }
 
 function Foo() {
@@ -162,7 +156,6 @@ function Foo() {
 
 不能将通用表达式作为 React 元素类型，例如：
 
-
 ```jsx
 import React from 'react'
 import { CompA, CompB } from './components'
@@ -186,7 +179,7 @@ import { CompA, CompB } from './components'
 
 const comps = {
   a: CompA,
-  b: CompB
+  b: CompB,
 }
 
 function Foo(props) {
@@ -200,13 +193,13 @@ function Foo(props) {
 
 有多种方式可以在 JSX 中指定 props。
 
-* JavaScript 表达式作为 Props
+- JavaScript 表达式作为 Props
 
-* 字符串字面量
+- 字符串字面量
 
-* Props 默认值为 “True”
+- Props 默认值为 “True”
 
-* 属性展开
+- 属性展开
 
 #### JavaScript 表达式作为 Props
 
@@ -288,7 +281,6 @@ function Bar(props) {
 ## JSX 中的子元素
 
 包含在开始和结束标签之间的 JSX 表达式内容将作为特定属性 `props.children` 传递给外层组件。
-
 
 #### 字符串字面量
 

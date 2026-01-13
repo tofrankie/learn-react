@@ -1,24 +1,22 @@
 # Hook APIs
 
-
 如果你刚开始接触 Hook，那么可能需要先查阅 Hook 概览。你也可以在 Hooks FAQ 章节中获取有用的信息。
 
-* 基础 Hook
+- 基础 Hook
 
-  * `useState`
-  * `useEffect`
-  * `useContext`
+  - `useState`
+  - `useEffect`
+  - `useContext`
 
-* 额外的 Hook
+- 额外的 Hook
 
-  * `useReducer`
-  * `useCallback`
-  * `useMemo`
-  * `useRef`
-  * `useImperativeHandle`
-  * `useLayoutEffect`
-  * `useDebugValue`
-
+  - `useReducer`
+  - `useCallback`
+  - `useMemo`
+  - `useRef`
+  - `useImperativeHandle`
+  - `useLayoutEffect`
+  - `useDebugValue`
 
 ## 基础 Hook
 
@@ -34,7 +32,6 @@ const [state, useState] = useState(initialState)
 
 `setState` 函数用于更新 `state`。它接收一个新的 `state` 值并将组件的一次重新渲染加入队列。
 
-
 ```jsx
 setState(newState)
 ```
@@ -46,7 +43,6 @@ setState(newState)
 **函数式更新**
 
 如果新的 `state` 需要通过使用先前的 `state` 计算得出，那么可以将函数传递给 `setState`。该函数将接收先前的 `state`，并返回一个更新后的值。下面的计算器组件示例展示了 `setState` 的两种用法：
-
 
 ```jsx
 function Counter({ initialCount = 0 }) {
@@ -72,7 +68,7 @@ function Counter({ initialCount = 0 }) {
 ```jsx
 useState(prevState => {
   // 也可以使用 Object.assign() 等方法
-  return {...prevState, ...updatedValues}
+  return { ...prevState, ...updatedValues }
 })
 ```
 
@@ -90,7 +86,6 @@ const [count, setCount] = useState(() => {
 **跳过 state 更新**
 
 调用 State Hook 的更新函数并传入当前的 `state` 时，React 将会跳过子组件的渲染及 effect 的执行。React 使用 [`Object.is` 比较算法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is)来比较 `state`。
-
 
 需要注意的是，React 可能仍需要在跳过渲染前渲染该组件。不过由于 React 不会对组件树的“深层”节点进行不必要的渲染，所以大可不必担心。如果你在渲染期间执行了高开销的计算，则可以使用 `useMemo` 来进行优化。
 
@@ -174,17 +169,15 @@ const value = useContext(MyContext)
 
 接收一个 context 对象（`React.createContext` 的返回值）并返回该 context 的当前值。当前的 context 值由上层组件中距离当前组件最近的 `<MyContext.Provider>` 中的 `value` prop 决定。
 
-
 当组件上层最近的 `<MyContext.Provider>` 更新时，该 Hook 会触发重渲染，并使用最新传递给 `MyContext` provider 的 context `value` 值。即使祖先使用 `React.memo` 或 `shouldComponentUpdate`，也会在组件本身使用 `useContext` 时重新渲染。
 
 别忘记 `useContext` 的参数必须是 context 对象本身：
 
-* 正确：`useContext(MyContext)`
-* 错误：`useContext(MyContext.Consumer)`
-* 错误：`useContext(MyContext.Provider)`
+- 正确：`useContext(MyContext)`
+- 错误：`useContext(MyContext.Consumer)`
+- 错误：`useContext(MyContext.Provider)`
 
 调用了 `useContext` 的组件总会在 context 值变化时重新渲染。如果重新渲染组件的开销较大，你可以通过使用 [memoization 来优化](https://github.com/facebook/react/issues/15156#issuecomment-474590693)。
-
 
 > 如果你在接触 Hook 前已经对 context API 比较熟悉，那应该可以理解，`useContext(MyContext)` 相当于 class 组件中的 `static contextType = MyContext` 或者 `<MyContext.Consumer>`。
 >
@@ -194,12 +187,12 @@ const value = useContext(MyContext)
 const themes = {
   light: {
     foreground: '#000000',
-    background: '#eeeeee'
+    background: '#eeeeee',
   },
   dark: {
     foreground: '#ffffff',
-    background: '#222222'
-  }
+    background: '#222222',
+  },
 }
 
 const ThemeContext = React.createContext(themes.light)
@@ -223,10 +216,11 @@ function Toolbar(props) {
 function ThemedButton() {
   const theme = useContext(ThemeContext)
   return (
-    <button style={{ background: theme.background, color: theme.foreground }}>I am styled by theme context!</button>
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
   )
 }
-
 ```
 
 对先前 [Context 高级指南](https://react.docschina.org/docs/context.html)中的示例使用 hook 进行了修改，你可以在链接中找到有关如何 Context 的更多信息。
@@ -234,7 +228,6 @@ function ThemedButton() {
 ## 额外的 Hook
 
 以下介绍的 Hook，有些是上一节中基础 Hook 的变体，有些则仅在特性情况下会用到。
-
 
 #### 1. useReducer
 
@@ -283,18 +276,13 @@ function Counter(props) {
 
 有两种不同初始化 useReducer state 的方式，你可以根据使用场景选择其中的一种。将初始 state 作为第二个参数传入 useReducer 是最简单的方法：
 
-
 ```jsx
-const [state, dispatch] = useReducer(
-  reducer,
-  {
-    count: initialCount
-  }
-)
+const [state, dispatch] = useReducer(reducer, {
+  count: initialCount,
+})
 ```
 
 > 注意，React 不使用 `state = initialState` 这一由 Redux 推广开来的参数约定。有时候初始值依赖于 `props`，因此需要在调用 Hook 时指定。如果你特别喜欢上述的参数约定，可以通过调用 `useReducer(reducer, undefined, reducer)` 来模拟 Redux 的行为，但我们不鼓励你这么做。
-
 
 **惰性初始化**
 
@@ -322,10 +310,9 @@ function Counter({ initialCount }) {
 #### 2. useCallback
 
 ```jsx
-const memoizedCallback = useCallback(
-  () => { doSomething(a, b) },
-  [a, b]
-)
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b)
+}, [a, b])
 ```
 
 返回一个 [memoized](https://en.wikipedia.org/wiki/Memoization) 回调函数。
@@ -407,7 +394,7 @@ function FancyInput(props, ref) {
   useImperativeHandle(ref, () => ({
     focus: () => {
       inputRef.current.focus()
-    }
+    },
   }))
   return <input ref={inputRef} />
 }

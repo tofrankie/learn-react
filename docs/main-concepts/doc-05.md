@@ -1,6 +1,6 @@
 # State & 生命周期
 
-在 [doc-03 元素渲染](https://github.com/toFrankie/react-learn/blob/main/docs/doc-03.md) 小节，我们只了解了一种更新 UI 界面的方法。通过调用 `ReactDOM.render()` 来修改我们想要渲染的元素。
+在 [doc-03 元素渲染](https://github.com/tofrankie/learn-react/blob/main/docs/doc-03.md) 小节，我们只了解了一种更新 UI 界面的方法。通过调用 `ReactDOM.render()` 来修改我们想要渲染的元素。
 
 ```jsx
 function tick() {
@@ -49,7 +49,6 @@ ReactDOM.render(<Clock />, document.getElementById('root'))
 我们需要在 `Clock` 组件中添加 `state` 来实现这个功能。
 
 `state` 与 `props` 类似，但是 `state` 是私有的，并且完全受控于当前组件。
-
 
 ### 将函数组件转换为 class 组件
 
@@ -122,10 +121,7 @@ class Clock extends React.Component {
 3. 移除 `<Clock />` 元素中的 `date` 属性：
 
 ```jsx
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-)
+ReactDOM.render(<Clock />, document.getElementById('root'))
 ```
 
 我们之后会将计时器相关的代码添加到组件中。
@@ -136,7 +132,7 @@ ReactDOM.render(
 class Clock extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {date: new Date()}
+    this.state = { date: new Date() }
   }
 
   render() {
@@ -149,14 +145,10 @@ class Clock extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-)
+ReactDOM.render(<Clock />, document.getElementById('root'))
 ```
 
 接下来，我们会设置 `Clock` 的计时器并每秒更新它。
-
 
 ### 将生命周期方法添加到 Class 中
 
@@ -172,7 +164,7 @@ ReactDOM.render(
 class Clock extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {date: new Date()}
+    this.state = { date: new Date() }
   }
 
   componentDidMount() {}
@@ -220,7 +212,6 @@ componentWillUnmount() {
 使用 `this.setState()` 来时刻更新组件 `state`：
 
 ```jsx
-
 class Clock extends React.Component {
   constructor(props) {
     super(props)
@@ -249,10 +240,7 @@ class Clock extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-)
+ReactDOM.render(<Clock />, document.getElementById('root'))
 ```
 
 现在时钟每秒都会刷新。
@@ -307,7 +295,7 @@ componentDidMount() {
 ```jsx
 // Wrong
 this.setState({
-  counter: this.state.counter + this.props.increment
+  counter: this.state.counter + this.props.increment,
 })
 ```
 
@@ -367,7 +355,6 @@ componentDidMount() {
 
 这里的合并是浅合并，所以 `this.setState({ comments })` 完整保留了 `this.state.posts`，但是完全替换了 `this.state.comments`。
 
-
 ### 数据是向下流动的
 
 不管是父组件或是子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是 `class` 组件。
@@ -411,10 +398,7 @@ function App() {
   )
 }
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-)
+ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
 每个 `Clock` 组件都会单独设置它自己的计时器并更新它。

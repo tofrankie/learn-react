@@ -40,7 +40,7 @@ const element = <Welcome name="Frankie" />
 
 当 React 元素为用户自定义组件是，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 `props`。
 
-> 在 [doc-02](https://github.com/toFrankie/react-learn/blob/main/docs/doc-02.md) 了解了 `React.createElement()` 方法，该方法里面的 props 就是包含了定义在组件上的所有属性（除了 `key`、`ref`、`__self`、`__source` 属性外）以及子组件，即我们称之为 `props` 的对象。
+> 在 [doc-02](https://github.com/tofrankie/learn-react/blob/main/docs/doc-02.md) 了解了 `React.createElement()` 方法，该方法里面的 props 就是包含了定义在组件上的所有属性（除了 `key`、`ref`、`__self`、`__source` 属性外）以及子组件，即我们称之为 `props` 的对象。
 
 例如，这段代码会在页面上渲染 `Hello, Frankie`：
 
@@ -51,10 +51,7 @@ function Welcome(props) {
 
 const element = <Welcome name="Frankie" />
 
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-)
+ReactDOM.render(element, document.getElementById('root'))
 ```
 
 在 [CodePen](https://codepen.io/tofrankie/pen/GRWOORm) 上尝试
@@ -102,4 +99,4 @@ React 非常地灵活，但它也有一个严格的规则：
 
 > **所有的 React 组件都必须像纯函数一样保护它们的 `props` 不被更改。**
 
-当然，应用程序的 UI 是动态的，并会伴随着时间的推移而变化。在[下一节](https://github.com/toFrankie/react-learn/blob/main/docs/doc-05.md)中，我们将介绍一种新的概念，称之为“state”。在不违反上述规则的情况下，state 允许 React 组件随着用户操作、网络响应或者其他变化而动态地输出内容。
+当然，应用程序的 UI 是动态的，并会伴随着时间的推移而变化。在[下一节](https://github.com/tofrankie/learn-react/blob/main/docs/doc-05.md)中，我们将介绍一种新的概念，称之为“state”。在不违反上述规则的情况下，state 允许 React 组件随着用户操作、网络响应或者其他变化而动态地输出内容。

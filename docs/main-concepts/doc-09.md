@@ -114,7 +114,9 @@ class EssayForm extends React.Component {
 <select>
   <option value="greenfruit">葡萄柚</option>
   <option value="lime">酸橙</option>
-  <option selected value="coconut">椰子</option>
+  <option selected value="coconut">
+    椰子
+  </option>
   <option value="mango">芒果</option>
 </select>
 ```
@@ -189,7 +191,7 @@ class Reservation extends React.Component {
     super(props)
     this.state = {
       isGoing: true,
-      numberOfGuests: 2
+      numberOfGuests: 2,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -198,7 +200,7 @@ class Reservation extends React.Component {
   handleChange(event) {
     const { name, checked, value } = event.target
     this.setState({
-      [name]: name === 'isGoing' ? checked : value
+      [name]: name === 'isGoing' ? checked : value,
     })
   }
 
@@ -236,7 +238,7 @@ class Reservation extends React.Component {
 
 ```jsx
 this.setState({
-  [name]: name === 'isGoing' ? checked : value
+  [name]: name === 'isGoing' ? checked : value,
 })
 ```
 
@@ -259,7 +261,7 @@ this.setState(partialState)
 ```jsx
 ReactDOM.render(<input value="hi" />, mountNode)
 
-setTimeout(function() {
+setTimeout(function () {
   ReactDOM.render(<input value={null} />, mountNode)
 }, 1000)
 ```

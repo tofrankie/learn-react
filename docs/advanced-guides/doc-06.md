@@ -46,9 +46,7 @@ function MyComponent() {
 ```jsx
 function MyComponent() {
   // ❌ 不能返回数组
-  return [1, 2, 3].map((item, index) => (
-    <div key={index}>{item}</div>
-  ))
+  return [1, 2, 3].map((item, index) => <div key={index}>{item}</div>)
 
   // 但注意，下面这种包裹在 {} 内是合法的
   // return (
@@ -67,6 +65,7 @@ function MyComponent() {
 ```
 
 类组件同理。当不正确使用时，将会报错：
+
 > Warning: MyComponent(...): A valid React element (or null) must be returned. You may have returned undefined, an array or some other invalid object.
 
 这种方案的缺点也是显而易见的，在组件的返回值上，总需要一层 <div>、<span> 或其他 DOM 节点包装起来。当 React 渲染成真实 DOM 时，这个包装节点总是会存在的。
@@ -77,8 +76,8 @@ function MyComponent() {
 
 除了原来的 React 元素和 `null` 之外，新增了几种类型：
 
-* React 16.0 起支持返回**数组**、**[Protals](https://zh-hans.reactjs.org/docs/portals.html)**、**字符串**、**数值**、**布尔值**。
-* React 16.2 起支持返回 **[Fragment](https://zh-hans.reactjs.org/docs/fragments.html)**，个人认为这是对数组形式的一种增强用法。
+- React 16.0 起支持返回**数组**、**[Protals](https://zh-hans.reactjs.org/docs/portals.html)**、**字符串**、**数值**、**布尔值**。
+- React 16.2 起支持返回 **[Fragment](https://zh-hans.reactjs.org/docs/fragments.html)**，个人认为这是对数组形式的一种增强用法。
 
 > 其中**布尔值**和 **`null`** 什么都不渲染，**字符串或数值**类型会渲染为**文本节点**。
 
@@ -87,9 +86,7 @@ function MyComponent() {
 ```jsx
 function MyComponent() {
   // ✅ 合法，支持数组了，需要添加 key 属性去避免警告
-  return [1, 2, 3].map((item, index) => (
-    <div key={index}>{item}</div>
-  ))
+  return [1, 2, 3].map((item, index) => <div key={index}>{item}</div>)
 
   // 或者是
   // return [
@@ -149,9 +146,7 @@ function Columns() {
 
 根据 W3C 的要求，一个合法的 `<table>`，`<tr>` 的子元素必须是 `<td>`。而 React 这种组件的写法直接破坏了 `<table>` 结构，最终也得不到我们的预期结果。
 
-
 > 一个合法的 <table> 结构应该是这样的，`table > thead/tbody/tfoot > tr > td > div/other`。
-
 
 如果按照 React 16.x 提供的新特性，可以轻松解决...
 
@@ -177,9 +172,7 @@ function Columns() {
 它的语法非常简单，把它是 React 内置的一个 React 组件。
 
 ```jsx
-<React.Fragment>
-  // One or more child elements
-</React.Fragment>
+<React.Fragment>// One or more child elements</React.Fragment>
 ```
 
 `key` 是唯一可以传递给 Fragment 的属性。将来可能会添加对其他属性的支持，例如事件处理程序。
@@ -191,18 +184,18 @@ class App extends React.Component {
       {
         id: '`2`',
         name: '计算机',
-        description: '用来计算的仪器...'
+        description: '用来计算的仪器...',
       },
       {
         id: '2',
         name: '显示器',
-        description: '以视觉方式显示信息的装置...'
-      }
-    ]
+        description: '以视觉方式显示信息的装置...',
+      },
+    ],
   }
 
   render() {
-    return <Glossary items={this.state.items} ></Glossary>
+    return <Glossary items={this.state.items}></Glossary>
   }
 }
 
@@ -270,7 +263,7 @@ function MyComponent() {
     <h2 key="heading-1">A heading</h2>,
     'More text.',
     <h2 key="heading-2">Another heading</h2>,
-    'Even more text.'
+    'Even more text.',
   ]
 }
 ```
@@ -297,16 +290,14 @@ function MyComponent() {
 
 仔细对比数组和 Fragment 形式，可以发现数组形式有以下缺点：
 
-* 数组中的子项必须用逗号分隔。
-* 数组中的 children 必须有一个 key 来防止 React 的 key 警告。
-* 字符串必须用引号括起来。
+- 数组中的子项必须用逗号分隔。
+- 数组中的 children 必须有一个 key 来防止 React 的 key 警告。
+- 字符串必须用引号括起来。
 
 以上这些限制 Fragment 统统都没有，我们就按正常的思维去编写 DOM 节点就好了。
 
-
-
 ## 四、References
 
-* [Fragments](https://react.docschina.org/docs/fragments.html)
-* [React v16.0](https://reactjs.org/blog/2017/09/26/react-v16.0.html#new-render-return-types-fragments-and-strings)
-* [React v16.2.0: Improved Support for Fragments](https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html)
+- [Fragments](https://react.docschina.org/docs/fragments.html)
+- [React v16.0](https://reactjs.org/blog/2017/09/26/react-v16.0.html#new-render-return-types-fragments-and-strings)
+- [React v16.2.0: Improved Support for Fragments](https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html)

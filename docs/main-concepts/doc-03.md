@@ -8,8 +8,7 @@ const element = <h1>Hello World</h1>
 
 与浏览器的 DOM 元素不同，React 元素是创建开销极小的普通对象。React DOM 会负责更新 DOM 来与 React 元素保持一致。
 
-> 这里有可能会将元素和另外一个熟知的概念“组件”混淆。[后面](https://github.com/toFrankie/react-learn/blob/main/docs/doc-04.md)会讲到。
-
+> 这里有可能会将元素和另外一个熟知的概念“组件”混淆。[后面](https://github.com/tofrankie/learn-react/blob/main/docs/doc-04.md)会讲到。
 
 ##### 将一个元素渲染为 DOM
 
@@ -74,7 +73,6 @@ React DOM 会将元素和它的子元素与它们之前的状态进行比较，�
 
 根据我们的经验，应该专注于 UI 在任意给定时刻的状态，而不是一视同仁地随着时间修改整个界面。
 
-
 ##### ReactDOM.render
 
 语法
@@ -106,69 +104,78 @@ function render(element, container, callback) {
   // 判断参数 container 是否为 DOM 节点，否则抛出异常
   if (!isValidContainer(container)) {
     {
-      throw Error( "Target container is not a DOM element." );
+      throw Error('Target container is not a DOM element.')
     }
   }
 
   {
-    var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === undefined;
+    var isModernRoot =
+      isContainerMarkedAsRoot(container) && container._reactRootContainer === undefined
 
     if (isModernRoot) {
-      error('You are calling ReactDOM.render() on a container that was previously ' + 'passed to ReactDOM.createRoot(). This is not supported. ' + 'Did you mean to call root.render(element)?');
+      error(
+        'You are calling ReactDOM.render() on a container that was previously ' +
+          'passed to ReactDOM.createRoot(). This is not supported. ' +
+          'Did you mean to call root.render(element)?'
+      )
     }
   }
 
-  return legacyRenderSubtreeIntoContainer(null, element, container, false, callback);
+  return legacyRenderSubtreeIntoContainer(null, element, container, false, callback)
 }
 ```
 
 ```js
-function legacyRenderSubtreeIntoContainer(parentComponent, children, container, forceHydrate, callback) {
+function legacyRenderSubtreeIntoContainer(
+  parentComponent,
+  children,
+  container,
+  forceHydrate,
+  callback
+) {
   {
-    topLevelUpdateWarnings(container);
-    warnOnInvalidCallback$1(callback === undefined ? null : callback, 'render');
+    topLevelUpdateWarnings(container)
+    warnOnInvalidCallback$1(callback === undefined ? null : callback, 'render')
   }
 
   // TODO: Without `any` type, Flow says "Property cannot be accessed on any
   // member of intersection type." Whyyyyyy.
-  var root = container._reactRootContainer;
-  var fiberRoot;
+  var root = container._reactRootContainer
+  var fiberRoot
 
   if (!root) {
     // Initial mount
-    root = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate);
-    fiberRoot = root._internalRoot;
+    root = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate)
+    fiberRoot = root._internalRoot
 
     if (typeof callback === 'function') {
-      var originalCallback = callback;
+      var originalCallback = callback
 
       callback = function () {
-        var instance = getPublicRootInstance(fiberRoot);
-        originalCallback.call(instance);
-      };
+        var instance = getPublicRootInstance(fiberRoot)
+        originalCallback.call(instance)
+      }
     } // Initial mount should not be batched.
 
-
     unbatchedUpdates(function () {
-      updateContainer(children, fiberRoot, parentComponent, callback);
-    });
+      updateContainer(children, fiberRoot, parentComponent, callback)
+    })
   } else {
-    fiberRoot = root._internalRoot;
+    fiberRoot = root._internalRoot
 
     if (typeof callback === 'function') {
-      var _originalCallback = callback;
+      var _originalCallback = callback
 
       callback = function () {
-        var instance = getPublicRootInstance(fiberRoot);
+        var instance = getPublicRootInstance(fiberRoot)
 
-        _originalCallback.call(instance);
-      };
+        _originalCallback.call(instance)
+      }
     } // Update
 
-
-    updateContainer(children, fiberRoot, parentComponent, callback);
+    updateContainer(children, fiberRoot, parentComponent, callback)
   }
 
-  return getPublicRootInstance(fiberRoot);
+  return getPublicRootInstance(fiberRoot)
 }
 ```

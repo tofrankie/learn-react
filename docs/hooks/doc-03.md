@@ -12,7 +12,6 @@ Effect Hook 可以让你在函数组件中执行副作用操作。
 
 有时候，我们只想在 React 更新 DOM 之后运行一些额外的代码。比如发送网络请求、手动变更 DOM、记录日志等，这些都是常见的无需清除的操作。因为我们在执行完这些操作之后，就可以忽略它们了。
 
-
 在 React 的 class 组件中，render 函数是不应该有任何副作用的。一般来说，在这里执行操作太早了，我们基本上都希望在 React 更新 DOM 之后才执行我们的操作。
 
 这就是为什么在 React class 中，我们把副作用操作放到 `componentDidMount` 和 `componentDidUpdate` 函数中。
@@ -85,7 +84,6 @@ function Counter(props) {
 
 是的，默认情况下，它在**第一次渲染之后**和**每次更新之后**都会执行。（下面会谈到如何控制它。）你可能会更容易接受 effect 发生在“渲染之后”这种概念，不用再去考虑“挂载”还是“更新”（类组件中会分为：挂载、更新、卸载三个阶段）。React 保证了每次运行 effect 的同时，DOM 都已经更新完毕。
 
-
 #### 详细说明
 
 现在我们已经对 effect 有了大致了解，下面这些代码应不难看懂了：
@@ -106,14 +104,11 @@ function Counter() {
 
 经验丰富的 JavaScript 开发人员可能会注意到，传递给 `useEffect` 的函数在每次渲染中都会有所不同，这是刻意为之的。事实上这正是我们可以在 effect 中国能获取最新的 `count` 的值，而不用担心其过期的原因。每次我们重修渲染，都会生成新的 effect，替换掉之前的。某种意义上讲，effect 更像是渲染结果的一部分 —— 每个 effect 属于一次特定的渲染。我们将在本章节后续部分更清楚地了解这样做的意义。
 
-
 > 与 `componentDidMount` 和 `componentDidUpdate` 不同，使用 `useEffect` 调度的 effect 不会阻塞浏览器更新屏幕，这样你的应用看起来响应更快。大多数情况下，effect 不需要同步地执行。在个别情况下（例如测量布局），有单独的 `useLayoutEffect` Hook 供你使用，其 API 与 `useEffect` 相同。
-
 
 ## 二、需要清除的 effect
 
 之前，我们研究了如何使用不需要清除的副作用，还有一些副作用是需要清除的。例如订阅外部数据源。这种情况下，清除工作是非常重要的，可以防止引起内存泄露！现在让我们来比较一下如何用 Class 和 Hook 来实现。
-
 
 假设组件 `Resize` 内要写一个 `resize` 事件监听器，例如：
 
@@ -151,7 +146,7 @@ class Resize extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      count: 0
+      count: 0,
     }
     this.handler = () => {
       console.log('Window size is changed.')
@@ -169,7 +164,6 @@ class Resize extends Component {
     window.removeEventListener('resize', this.listener)
   }
 
-
   render() {
     return <div>Please change the window size to trigger the listener!</div>
   }
@@ -185,7 +179,9 @@ import React, { useEffect } from 'react'
 
 function Resize(props) {
   useEffect(() => {
-    const handler = () => { console.log('Window size is changed.') }
+    const handler = () => {
+      console.log('Window size is changed.')
+    }
     const listener = throttle(handler, 500)
 
     // 组件初次加载后，添加监听器
@@ -210,12 +206,11 @@ function Resize(props) {
 
 #### React 何时清除 effect？
 
-React 会在组件卸载的时候执行清除操作。正如之前学到的，effect 在每次渲染的时候都会执行。这就是为什么 React 会在执行当前 effect 之前对上一个 effect 进行清除。我们稍后将讨论为什么这将助于避免 bug以及如何在遇到性能问题时跳过此行为。
+React 会在组件卸载的时候执行清除操作。正如之前学到的，effect 在每次渲染的时候都会执行。这就是为什么 React 会在执行当前 effect 之前对上一个 effect 进行清除。我们稍后将讨论为什么这将助于避免 bug 以及如何在遇到性能问题时跳过此行为。
 
 ## 三、使用 Effect 的提示
 
 > 除此之外，请记得 React 会等待浏览器完成画面渲染之后才会延迟调用 useEffect，因此会使得额外操作很方便。
-
 
 #### 使用多个 Effect 的提示
 
@@ -326,7 +321,6 @@ function Counter(props) {
 ```
 
 useEffect 默认就会在调用一个新的 effect 之前对前一个 effect 进行清理。
-
 
 #### 提示：通过跳过 Effect 进行性能优化
 

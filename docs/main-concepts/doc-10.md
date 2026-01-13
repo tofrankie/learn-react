@@ -55,7 +55,7 @@ class Calculator extends React.Component {
 ```jsx
 const scaleNames = {
   c: 'Celsius',
-  f: 'Faherenheit'
+  f: 'Faherenheit',
 }
 
 class TemperatureInput extends React.Component {
@@ -113,11 +113,11 @@ class Calculator extends React.Component {
 
 ```jsx
 function toCelsius(fahrenheit) {
-  return (fahrenheit - 32) * 5 / 9
+  return ((fahrenheit - 32) * 5) / 9
 }
 
 function toFahrenheit(celsius) {
-  return (celsius * 9 / 5) + 32
+  return (celsius * 9) / 5 + 32
 }
 ```
 
@@ -256,15 +256,15 @@ class TemperatureInput extends React.Component {
 ```jsx
 const scaleNames = {
   c: 'Celsius',
-  f: 'Faherenheit'
+  f: 'Faherenheit',
 }
 
 function toCelsius(fahrenheit) {
-  return (fahrenheit - 32) * 5 / 9
+  return ((fahrenheit - 32) * 5) / 9
 }
 
 function toFahrenheit(celsius) {
-  return (celsius * 9 / 5) + 32
+  return (celsius * 9) / 5 + 32
 }
 
 function tryConvert(temperature, convert) {
@@ -313,7 +313,7 @@ class Calculator extends React.Component {
     super(props)
     this.state = {
       temperature: '',
-      scale: 'c'
+      scale: 'c',
     }
 
     this.handleCelsiusChange = this.handleCelsiusChange.bind(this)
@@ -345,18 +345,13 @@ class Calculator extends React.Component {
           temperature={fahrenheit}
           onTemperatureChange={this.handleFahrenheitChange}
         />
-        <BoilingVerdict
-          celsius={parseFloat(celsius)}
-        />
+        <BoilingVerdict celsius={parseFloat(celsius)} />
       </div>
     )
   }
 }
 
-ReactDOM.render(
-  <Calculator />,
-  document.getElementById('root')
-)
+ReactDOM.render(<Calculator />, document.getElementById('root'))
 ```
 
 [在 CodePen 上尝试](https://codepen.io/tofrankie/pen/OJpZxRa)
@@ -365,24 +360,23 @@ ReactDOM.render(
 
 让我们来重新梳理一下当你对输入框内容进行编辑时会发生写什么：
 
-* React 会调用 DOM 中的 `<input>` 的 `onChange` 方法。在本实例中，它是 `TemperatureInput` 组件的 `handleChange` 方法。
+- React 会调用 DOM 中的 `<input>` 的 `onChange` 方法。在本实例中，它是 `TemperatureInput` 组件的 `handleChange` 方法。
 
-* `TemperatureInput` 组件中的 `handleChange` 方法会调用 `this.props.onTemperatureChange()`，并传入新输入的值作为参数。其中 `props` 诸如 `onTemperature` 之类，均由父组件 `Calculator` 提供。
+- `TemperatureInput` 组件中的 `handleChange` 方法会调用 `this.props.onTemperatureChange()`，并传入新输入的值作为参数。其中 `props` 诸如 `onTemperature` 之类，均由父组件 `Calculator` 提供。
 
-* 起初渲染时，用于摄氏度输入的子组件 `TemperatureInput` 中的 `onTemperatureChange` 方法与 `Calculator` 组件中的 `handleCelsiusChange` 方法相同，而，用于华氏度输入的子组件 `TemperatureInput` 中的 `onTemperatureChange` 方法与 `Calculator` 组件中的 `handleFahrenheitChange` 方法相同。因此，无论哪个输入框被编辑都会调用 `Calculator` 组件中对应的方法。
+- 起初渲染时，用于摄氏度输入的子组件 `TemperatureInput` 中的 `onTemperatureChange` 方法与 `Calculator` 组件中的 `handleCelsiusChange` 方法相同，而，用于华氏度输入的子组件 `TemperatureInput` 中的 `onTemperatureChange` 方法与 `Calculator` 组件中的 `handleFahrenheitChange` 方法相同。因此，无论哪个输入框被编辑都会调用 `Calculator` 组件中对应的方法。
 
-* 在这些方法内部，`Calculator` 组件通过使用新的输入值与当前输入框UI应的温度计量单位来调用 `this.setState()` 进而请求 React 重新渲染自己本身。
+- 在这些方法内部，`Calculator` 组件通过使用新的输入值与当前输入框 UI 应的温度计量单位来调用 `this.setState()` 进而请求 React 重新渲染自己本身。
 
-* React 调用 `Calculator` 组件的 `render` 方法得到组件的 UI 呈现。温度转换在这时进行，两个输入框中的数值通过当前输入温度和其计量单位拉重新计算获得。
+- React 调用 `Calculator` 组件的 `render` 方法得到组件的 UI 呈现。温度转换在这时进行，两个输入框中的数值通过当前输入温度和其计量单位拉重新计算获得。
 
-* React 使用 `Calculator` 组件提供的新 `props` 分别调用两个 `TemperatureInput` 子组件的 `render` 方法来获取子组件的 UI 呈现。
+- React 使用 `Calculator` 组件提供的新 `props` 分别调用两个 `TemperatureInput` 子组件的 `render` 方法来获取子组件的 UI 呈现。
 
-* React 调用 `BoilingVerdict` 组件的 `render` 方法，并将摄氏温度值以组件 `props` 方式传入。
+- React 调用 `BoilingVerdict` 组件的 `render` 方法，并将摄氏温度值以组件 `props` 方式传入。
 
-* React DOM 根据输入值匹配水是否沸腾，并将结果更新至 DOM。我们广告编辑的输入框接收器当前值，另一个输入框内容更新为转换后的温度值。
+- React DOM 根据输入值匹配水是否沸腾，并将结果更新至 DOM。我们广告编辑的输入框接收器当前值，另一个输入框内容更新为转换后的温度值。
 
 得益于每次的更新都经历相同的步骤，两输入框的内容才能始终保持同步。
-
 
 ### 学习小结
 

@@ -12,7 +12,7 @@ console.log(doubled)
 
 代码打印出 `[2, 4, 6, 8, 10]`。
 
-在 React 中，把数组转化为[元素](https://github.com/toFrankie/react-learn/blob/main/docs/doc-03.md)列表的过程是很相似的。
+在 React 中，把数组转化为[元素](https://github.com/tofrankie/learn-react/blob/main/docs/doc-03.md)列表的过程是很相似的。
 
 ### 渲染多个组件
 

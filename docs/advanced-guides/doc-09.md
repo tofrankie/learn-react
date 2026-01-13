@@ -6,14 +6,12 @@ Portal 提供了一种将子节点渲染到存在于父组件以外的 DOM 节�
 ReactDOM.createPortal(child, container)
 ```
 
-* `child`：是任何[可渲染的 React 子元素](https://react.docschina.org/docs/react-component.html#render)。例如字符串、Fragment 等
-* `container`：是一个 DOM 元素。
-
+- `child`：是任何[可渲染的 React 子元素](https://react.docschina.org/docs/react-component.html#render)。例如字符串、Fragment 等
+- `container`：是一个 DOM 元素。
 
 ## 用法
 
 通常来讲，当你从组件的 render 方法返回一个元素时，该元素将被挂载到 DOM 节点中离其最近的父亲节点：
-
 
 ```jsx
 render() {
@@ -59,7 +57,6 @@ render() {
 在 `#app-root` 里的 `Parent` 组件能够捕获到未被捕获的从兄弟节点 `#modal-root` 冒泡上来的事件。
 
 ```jsx
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -106,7 +103,7 @@ class Parent extends React.Component {
     // 这个将会被触发更新父元素的 state，
     // 即使这个按钮在 DOM 中不是直接关联的后代
     this.setState(state => ({
-      clicks: state.clicks + 1
+      clicks: state.clicks + 1,
     }))
   }
 
@@ -115,7 +112,8 @@ class Parent extends React.Component {
       <div onClick={this.handleClick}>
         <p>Number of clicks: {this.state.clicks}</p>
         <p>
-          Open up the browser DevTools to observe that the button is not a child of the div with the onClick handler.
+          Open up the browser DevTools to observe that the button is not a child of the div with the
+          onClick handler.
         </p>
         <Modal>
           <Child />
@@ -140,7 +138,6 @@ ReactDOM.render(<Parent />, appRoot)
 
 在父组件里捕获一个来自 portal 冒泡上来的事件，使之能够在开发时具有不完全依赖于 portal 的更为灵活的抽象。例如，如果你在渲染一个 `<Modal />` 组件，无论其是否采用 portal 实现，父组件都能够捕获其事件。
 
-
 ## More
 
-* [传送门：React Portal](https://zhuanlan.zhihu.com/p/29880992)
+- [传送门：React Portal](https://zhuanlan.zhihu.com/p/29880992)

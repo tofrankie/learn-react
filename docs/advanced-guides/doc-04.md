@@ -8,9 +8,9 @@ Refs 提供了一种方式，允许我们访问 DOM 节点或在 render 方法�
 
 下面是几个适合使用 refs 的情况：
 
-* 管理焦点，文本选择或媒体播放
-* 触发强制动画
-* 集成第三方 DOM 库
+- 管理焦点，文本选择或媒体播放
+- 触发强制动画
+- 集成第三方 DOM 库
 
 避免使用 refs 来做任何可以通过声明式实现来完成的事情。
 
@@ -20,13 +20,11 @@ Refs 提供了一种方式，允许我们访问 DOM 节点或在 render 方法�
 
 你可能首先会想到使用 refs 在你的 App 中“让事情发生”。如果是这种情况，请花一点时间，认真再考虑一下 `state` 属性应该被安排在哪个组件层中。通常你会想明白，让更高的组件层级拥有这个 `state`，是更恰当的。查看[状态提升](https://react.docschina.org/docs/lifting-state-up.html)以获取更多有关示例。
 
-
 ## 创建 Refs
 
-* React 16.3 及以上使用 `React.createRef()` API
-* React 16.3 以下建议使用回调形式的 Refs
-* 还有一种过时的 API：String 类型的 Refs
-
+- React 16.3 及以上使用 `React.createRef()` API
+- React 16.3 以下建议使用回调形式的 Refs
+- 还有一种过时的 API：String 类型的 Refs
 
 #### 1. React.createRef()
 
@@ -59,14 +57,13 @@ class MyComponent extends React.Component {
 const node = this.myRef.current
 ```
 
-
 **Ref 的值根据节点的类型而有所不同**
 
-* 当 `ref` 属性用于 HTML 元素时，构造函数中使用 `React.createRef()` 创建的 `ref` 接收底层 DOM 元素作为其 `current` 属性。
+- 当 `ref` 属性用于 HTML 元素时，构造函数中使用 `React.createRef()` 创建的 `ref` 接收底层 DOM 元素作为其 `current` 属性。
 
-* 当 `ref` 属性用于自定义 class 组件时，`ref` 对象接收组件的挂载实例作为其 `current` 属性。
+- 当 `ref` 属性用于自定义 class 组件时，`ref` 对象接收组件的挂载实例作为其 `current` 属性。
 
-* **你不能在“函数组件”上使用 `ref` 属性，因为它们没有实例。**
+- **你不能在“函数组件”上使用 `ref` 属性，因为它们没有实例。**
 
 #### 3. 举例
 
@@ -100,7 +97,6 @@ class MyInput extends Component {
 ```
 
 > **React 会在组件挂载时给 `current` 属性传入 DOM 元素，并在组件卸载时传入 `null` 值。`ref` 会在 `componentDidMount()` 和 `componentDidUpdate()` 钩子触发前更新。**
-
 
 ##### 为 class 组件添加 Ref
 
@@ -142,7 +138,6 @@ class Child extends Component {
 ```
 
 > 注意，若 ref 绑定到 React 组件上的话，该组件必须是 class 组件才有效。
-
 
 ##### Refs 与 函数组件
 
@@ -265,7 +260,6 @@ export default class MyInput extends Component {
 
 > 同样地，React 将在组件挂载时，会调用 ref 回调函数并传入 DOM 元素，当卸载时调用它并传入 `null`。在 `componentDidMount()` 或 `componentDidUpdate()` 触发前，React 会保证 refs 一定是最新的。
 
-
 你可以在组件间传递回调形式的 refs，就像你可以传递通过 `React.createRef()` 创建的对象 refs 一样。
 
 ```jsx
@@ -333,17 +327,17 @@ function Child2() {
 
 在 React 中，有四种创建 Refs 的方式：
 
-* `React.useRef(initialValue)`
+- `React.useRef(initialValue)`
 
   适用于函数组件，并且函数组件内避免使用下面几种方式，由于函数组件的渲染方式，可能会有问题。
 
-* `React.createRef()`
+- `React.createRef()`
   适用于 class 组件。该方法返回一个 ref 对象，也常挂载到 class 组件实例上，以便可以在整个组件中引用它。
 
-* `<div ref={el => this.xxx = el } />`
+- `<div ref={el => this.xxx = el } />`
   React 16.2 及以下采用这种方式，一般绑定到组件实例上，然后通过 `this.xxx` 访问 ref 对象。
 
-* `<div ref="strRef" />`
+- `<div ref="strRef" />`
   通过 this.refs.strRef 形式访问 ref 对象。
 
 > 请注意，函数组件内尽可能地使用 `React.useRef()`，class 组件使用 `React.createRef()`，当两者都不支持的情况下，才考虑回调 refs 或字符串类型 refs。而且后面三种形式应用于 class 组件的子函数组件均无效，因为函数组件没有实例（即 `this`）。

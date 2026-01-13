@@ -12,25 +12,18 @@ React 有十分强大的组合模式。我们推荐使用组合而非继承来�
 
 ```jsx
 function FancyBorder(props) {
-  return (
-    <div className={'FancyBorder FancyBorder-' + props.color}>
-      {props.children}
-    </div>
-  )
+  return <div className={'FancyBorder FancyBorder-' + props.color}>{props.children}</div>
 }
 ```
 
 这使得别的组件可以通过 JSX 嵌套，将任意组件作为子组件传递给它们。
-
 
 ```jsx
 function WelcomeDialog() {
   return (
     <FancyBorder color="blue">
       <h1 className="Dialog-title">Welcome</h1>
-      <p className="Dialog-message">
-        Thank you for visiting our spacecraft!
-      </p>
+      <p className="Dialog-message">Thank you for visiting our spacecraft!</p>
     </FancyBorder>
   )
 }
@@ -51,14 +44,11 @@ function SplitPane(props) {
 }
 
 function App() {
-  return (
-    <SplitPane left={<Contacts />} right={<Chat />}/>
-  )
+  return <SplitPane left={<Contacts />} right={<Chat />} />
 }
 ```
 
 > `<Contacts />` 和 `<Chat />` 之类的 React 元素本质上就是对象（object），所以你可以把它们当做 `props`，像其他数据一样传递。这种方法可能使你想起其他库中“**槽**”（slot）的概念，但在 React 中没有“槽”这一个概念的限制，你可以将任何东西作为 `props` 进行传递。
-
 
 ### 特例关系
 
@@ -71,20 +61,13 @@ function Dialog(props) {
   return (
     <FancyBorder color="blue">
       <h1 className="Dialog-title">{props.title}</h1>
-      <p className="Dialog-message">
-        {props.message}
-      </p>
+      <p className="Dialog-message">{props.message}</p>
     </FancyBorder>
   )
 }
 
 function WelcomeDialog() {
-  return (
-    <Dialog
-      title="Welcome"
-      message="Thank you for visiting our spacecraft!"
-    />
-  )
+  return <Dialog title="Welcome" message="Thank you for visiting our spacecraft!" />
 }
 ```
 
@@ -95,9 +78,7 @@ function Dialog(props) {
   return (
     <FancyBorder color="blue">
       <h1 className="Dialog-title">{props.title}</h1>
-      <p className="Dialog-message">
-        {props.message}
-      </p>
+      <p className="Dialog-message">{props.message}</p>
       {props.children}
     </FancyBorder>
   )
@@ -121,20 +102,14 @@ class SignUpDialog extends React.Component {
 
   render() {
     return (
-      <Dialog
-        title="Mars Exploration Program"
-        message="How should we refer to you?"
-      >
+      <Dialog title="Mars Exploration Program" message="How should we refer to you?">
         <input value={this.state.login} onChange={this.handleChange} />
-        <button onClick={this.handleSignUp}>
-          Sign Me Up!
-        </button>
+        <button onClick={this.handleSignUp}>Sign Me Up!</button>
       </Dialog>
     )
   }
 }
 ```
-
 
 ### 那么继承呢？
 

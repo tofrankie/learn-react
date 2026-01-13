@@ -6,7 +6,7 @@ class LikeButton extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      liked: false
+      liked: false,
     }
   }
 
@@ -18,7 +18,7 @@ class LikeButton extends Component {
     return createElement(
       'button',
       {
-        onClick: () => this.setState({ liked: true })
+        onClick: () => this.setState({ liked: true }),
       },
       'Like'
     )
@@ -28,8 +28,5 @@ class LikeButton extends Component {
 document.querySelectorAll('.like_button_container').forEach(domContainer => {
   // Read the comment ID from a data-* attribute.
   const commentID = parseInt(domContainer.dataset.commentid, 10)
-  ReactDOM.render(
-    createElement(LikeButton, { commentID: commentID }),
-    domContainer
-  )
+  ReactDOM.render(createElement(LikeButton, { commentID: commentID }), domContainer)
 })

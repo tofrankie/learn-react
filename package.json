@@ -1,10 +1,10 @@
 {
-  "name": "react-learn",
+  "name": "learn-react",
   "version": "1.0.0",
   "description": "重新认识 React",
   "repository": {
     "type": "git",
-    "url": "https://github.com/toFrankie/react-learn.git"
+    "url": "https://github.com/tofrankie/learn-react.git"
   },
   "author": "Frankie <1426203851@qq.com>",
   "license": "ISC",

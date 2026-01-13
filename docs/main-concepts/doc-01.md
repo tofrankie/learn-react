@@ -12,17 +12,17 @@ React 实现了一套独立于浏览器的 DOM 系统，兼顾了性能和跨浏
 
 React 和 HTML 之间有许多不同的属性：
 
-* checked
+- checked
 
 该 `checked` 属性由 `<input>` 类型 `checkbox` 或者组件支持 `radio`。你可以使用它来设置组件是否被选中。这对于构建受控组件非常有用。`defaultChecked` 是不受控制的等价物，用于设置组件是否在第一次安装时进行检查。
 
-* className
+- className
 
 要指定一个 CSS 类，请使用该 `className` 属性。这适用于所有常规的 DOM 和 SVG 元素用于 `<div>`、`<a>` 和其他。
 
 如果你使用 Web 组件的反应（这是不常见的），请改用 `class` 属性。
 
-* dangerouslySetInnerHTML
+- dangerouslySetInnerHTML
 
 `dangerouslySetInnerHTML` 是 React `innerHTML` 在浏览器 DOM 中使用的替代品。一般来说，从代码中设置 HTML 是有风险的，因为很容易让你的用户无意中发现跨站脚本攻击（XSS）。因此，你可以从 React 中设置 HTML，但您必须输入 `dangerouslySetInnerHTML` 并使用 `__html` 密钥传递对象，以提醒自己危险。例如：
 
@@ -36,27 +36,27 @@ function MyComponent() {
 }
 ```
 
-* htmlFor
+- htmlFor
 
 既然 `for` 是 JavaScript 中的保留字，React 元素就会用到 `htmlFor`。
 
-* onChange
+- onChange
 
 `onChange` 事件的行为与你所期待的一样：每当表单字段发生更改时，将触发此事件。我们故意不使用现有的浏览器行为，因为 `onChange` 它的行为不当，React 依靠此事件来实时处理用户输入。
 
-* selected
+- selected
 
 `selected` 属性由 `<option>` 组件支持。你可以使用它来设置组件是否被选中。这对于构建受控组件非常有用。
 
-* style
+- style
 
 `style` 属性接受带有 camelCased 属性的 JavaScript 对象而不是 CSS 字符串。这与 `style` JavaScript 属性一致，效率更高，并可防止 XSS 安全漏洞。例如：
 
 ```jsx
 const divStyle = {
   color: 'blue',
-  backgroundImage: 'url(' + imgUrl + ')'
-};
+  backgroundImage: 'url(' + imgUrl + ')',
+}
 
 function HelloWorldComponent() {
   return <div style={divStyle}>Hello World!</div>
@@ -68,11 +68,11 @@ function HelloWorldComponent() {
 ```jsx
 const divStyle = {
   WebkitTransition: 'all', // note the capital 'W' here
-  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
-};
+  msTransition: 'all', // 'ms' is the only lowercase vendor prefix
+}
 
 function ComponentWithTransition() {
-  return <div style={divStyle}>This should work cross-browser</div>;
+  return <div style={divStyle}>This should work cross-browser</div>
 }
 ```
 
@@ -82,26 +82,21 @@ React 会自动将 `px` 后缀附加到某些内联样式属性。例如：
 
 ```jsx
 // This:
-<div style={{ height: 10 }}>
-  Hello World!
-</div>;
+;<div style={{ height: 10 }}>Hello World!</div>
 
 // Becomes:
-<div style="height: 10px;">
-  Hello World!
-</div>
+;<div style="height: 10px;">Hello World!</div>
 ```
 
 不是所有的样式属性都转换为像素字符串。某些属性仍然无单位（例如 `zoom`、`order`、`flex`）。无单位属性的完整列表可以在[这里](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59)看到。
 
-* suppressContentEditableWarning
+- suppressContentEditableWarning
 
 通常情况下，当其子元素也含有 `contentEditable` 属性会有警告，因为它不起作用。该属性会抑制该警告。除非你正在构建一个像手动管理的 Draft.js 这样的库，否则不要使用它 `contentEditable`。
 
-* value
+- value
 
 value 属性由 `<input>` 和 `<textarea>` 组件支持。你可以使用它来设置组件的值。这对于构建受控组件非常有用。`defaultValue` 是不受控制的等价物，用于设置组件首次安装时的值。
-
 
 ##### 2. 所有支持的 HTML 属性
 
@@ -120,6 +115,7 @@ React 为 DOM 提供了一套以 JavaScript 为中心的 API。由于 React 组�
 如果在浏览器端直接 JSX 语法，需要引入 babel 的 JSX 解析器，将 JSX 转化为 JS 语法。同时引入 babel 后，你就可以使用 ES6+ 语法，babel 会帮你把新的 ES6+ 语法特性转化为 ES5 语法，以兼容更多的浏览器。
 
 > 需要注意的地方：
+>
 > 1. `<script>` 标签的 `type` 属性为 `text/babel`，这是 React 独有的 JSX 语法，跟 JavaScript 不兼容。凡是在页面中直接使用 JSX 的地方，都要加上 `type="text/babel"`。
 >
 > 2. 一共用了三个库：`react.js` 、`react-dom.js` 和 `babel.min.js`，它们必须首先加载。其中，`react.js` 是 React 的核心库，`react-dom.js` 是提供与 DOM 相关的功能，`babel.js` 的作用是将 JSX 语法转为 JavaScript 语法。
@@ -129,8 +125,8 @@ React 为 DOM 提供了一套以 JavaScript 为中心的 API。由于 React 组�
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   </head>
   <body>
     <!-- Load React. -->
@@ -154,11 +150,7 @@ React 为 DOM 提供了一套以 JavaScript 为中心的 API。由于 React 组�
 
 ```js
 // 原生 js
-const element = React.createElement(
-  'h1',
-  null,
-  'Hello, world!'
-)
+const element = React.createElement('h1', null, 'Hello, world!')
 ```
 
 ```jsx
@@ -168,10 +160,9 @@ const element = <h1>Hello, world!</h1>
 
 上面的两段示例是等价的，虽然 jsx 完全是可选的，显然使用 jsx 语法会更简洁，可读性更好。
 
-
 ### 参考
 
-* [Using Babel](https://babeljs.io/setup)
-* [React 入门实例教程](http://www.ruanyifeng.com/blog/2015/03/react.html)
-* [DOM 元素](https://zh-hans.reactjs.org/docs/dom-elements.html)
-* [React DOM Elements 腾讯云社区]()
+- [Using Babel](https://babeljs.io/setup)
+- [React 入门实例教程](http://www.ruanyifeng.com/blog/2015/03/react.html)
+- [DOM 元素](https://zh-hans.reactjs.org/docs/dom-elements.html)
+- [React DOM Elements 腾讯云社区]()

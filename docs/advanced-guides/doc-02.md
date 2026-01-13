@@ -91,7 +91,6 @@ class ThemeButton2 extends Component {
 
 ## Context API
 
-
 #### React.createContext
 
 ```jsx
@@ -101,7 +100,6 @@ const MyContext = React.createContext(defaultValue)
 创建一个 Context 对象。当 React 渲染一个订阅了这个 Context 对象的组件，这个组件会从组件树中离自身最近的那个匹配的 `Provider` 中读取到当前的 context 值。
 
 **只有当组件树所处的树中没有匹配到 `Provider` 时，其 `defaultValue` 参数才会生效**。这有助于在不使用 `Provider` 包装组件的情况下对组件进行测试。注意：将 `undefined` 或 `null` 传递给 `Provider` 的 `value` 时，消费组件的 `defaultValue` 不会生效。
-
 
 #### Context.Provider
 
@@ -134,7 +132,6 @@ class MyClass extends React.Component {
   }
 }
 
-
 // 或者
 class MyClass extends React.Component {
   render() {
@@ -147,7 +144,6 @@ MyClass.contextType = MyContext
 挂载在 class 上的 `contextType` 属性会被重赋值为一个由 `React.createContext()` 创建的 Context 对象。这能让你使用 `this.context` 来消费最近 Context 上的那个值。你可以在任何声明周期中访问到它，包括 `render` 函数。
 
 > 你只能通过该 API 订阅单一 context。如果你想订阅多个，阅读[使用多个 Context](https://react.docschina.org/docs/context.html#consuming-multiple-contexts) 章节。
-
 
 #### Context.Consumer
 
@@ -164,7 +160,6 @@ MyClass.contextType = MyContext
 这需要[函数作为子元素（function as a child）](https://react.docschina.org/docs/render-props.html#using-props-other-than-render)这种做法。这个函数接收当前的 context 值，返回一个 React 节点。传递给函数的 `value` 值等同于往上组件树离这个 context 最近的 Provider 提供的 `value` 值。如果没有对应的 Provider，`value` 参数等同于传递给 `createContext()` 的 `defaultValue`。
 
 > 注意，想要了解更多关于“函数作为子元素（function as a child）”模式，详见[render props](https://react.docschina.org/docs/render-props.html)
-
 
 #### Context.displayName
 
@@ -200,17 +195,17 @@ import { createContext } from 'react'
 export const themes = {
   light: {
     color: '#000',
-    bg: '#fff'
+    bg: '#fff',
   },
   dark: {
     color: '#fff',
-    bg: '#000'
-  }
+    bg: '#000',
+  },
 }
 
 export const ThemeContext = createContext({
   theme: themes.light,
-  toggleTheme: () => {}
+  toggleTheme: () => {},
 })
 ```
 
@@ -225,7 +220,13 @@ class ThemedButton extends Component {
 
   render() {
     let { theme, toggleTheme } = this.context
-    return <button {...this.props} onClick={toggleTheme} style={{ color: theme.color, background: theme.bg }} />
+    return (
+      <button
+        {...this.props}
+        onClick={toggleTheme}
+        style={{ color: theme.color, background: theme.bg }}
+      />
+    )
   }
 }
 
@@ -244,13 +245,13 @@ export default class App extends Component {
     super(props)
     this.state = {
       theme: themes.light,
-      toggleTheme: this.toggleTheme
+      toggleTheme: this.toggleTheme,
     }
   }
 
   toggleTheme = () => {
     this.setState(state => ({
-      theme: state.theme === themes.light ? themes.dark : themes.light
+      theme: state.theme === themes.light ? themes.dark : themes.light,
     }))
   }
 
@@ -289,7 +290,6 @@ class App extends React.Component {
 }
 ```
 
-
 ## 旧版 Context
 
 在 React 16.3 之前，属于[旧版 context API](https://react.docschina.org/docs/legacy-context.html)。
@@ -303,16 +303,16 @@ import PropTypes from 'prop-types'
 // 在 context 的生产者添加 childContextTypes 和 getChildContext
 class Parent extends Component {
   static childContextTypes = {
-    color: PropTypes.string
+    color: PropTypes.string,
   }
 
   state = {
-    color: 'red'
+    color: 'red',
   }
 
   getChildContext() {
     return {
-      color: this.state.color
+      color: this.state.color,
     }
   }
 
@@ -324,7 +324,7 @@ class Parent extends Component {
 class Child extends Component {
   // 生产者的子树上的所有组件可通过 定义 contextTypes 来访问 context
   static contextTypes = {
-    color: PropTypes.string
+    color: PropTypes.string,
   }
 
   render() {
@@ -342,7 +342,7 @@ function Button(props, context) {
 // 只要 contextTypes 被定义为函数的一个属性，
 // 函数组件第二个参数就能接收到 context，否则该参数将会是一个空对象。
 Button.contextTypes = {
-  color: PropTypes.string
+  color: PropTypes.string,
 }
 ```
 
@@ -350,10 +350,10 @@ Button.contextTypes = {
 
 如果一个组件内定义了 `contextTypes`，下面的 生命周期方法 会接收一个额外参数，就是 context 对象：
 
-* `constructor(props, context)`
-* `componentWillReceiveProps(nextProps, nextContext)`
-* `shouldComponentUpdate(nextProps, nextState, nextContext)`
-* `componentWillUpdate(nextProps, nextState, nextContext)`
+- `constructor(props, context)`
+- `componentWillReceiveProps(nextProps, nextContext)`
+- `shouldComponentUpdate(nextProps, nextState, nextContext)`
+- `componentWillUpdate(nextProps, nextState, nextContext)`
 
 > 注意：从 React 16 开始，`componentDidUpdate` 不再接收 `prevContext`。
 

@@ -2,31 +2,25 @@
 
 React 元素的事件处理和 DOM 元素的很相似，但是有一点语法上的不同：
 
-* React 事件的命名采用小驼峰（cameCase），而不是纯小写。
-* 使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。
+- React 事件的命名采用小驼峰（cameCase），而不是纯小写。
+- 使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。
 
 例如，传统的 HTML：
 
 ```html
-<button onclick="activateLasers()">
-  Activate Lasers
-</button>
+<button onclick="activateLasers()">Activate Lasers</button>
 ```
 
 在 React 中略微不同：
 
 ```jsx
-<button onClick={activateLasers}>
-  Activate Lasers
-</button>
+<button onClick={activateLasers}>Activate Lasers</button>
 ```
 
 在 React 中另外一个不同点是你不能通过返回 `false` 的方式阻止默认行为。你必须显式的使用 `preventDefault`。例如，传统的 HTML 中阻止链接默认打开一个新页面，你可以这样写：
 
 ```html
-<a href="#" onclick="console.log('The link was clicked.'); return false">
-  Click me
-</a>
+<a href="#" onclick="console.log('The link was clicked.'); return false"> Click me </a>
 ```
 
 在 React 中，可能是这样的：
@@ -63,23 +57,16 @@ class Toggle extends React.Component {
 
   handleClick() {
     this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+      isToggleOn: !state.isToggleOn,
     }))
   }
 
   render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.state.isToggleOn ? 'ON' : 'OFF'}
-      </button>
-    )
+    return <button onClick={this.handleClick}>{this.state.isToggleOn ? 'ON' : 'OFF'}</button>
   }
 }
 
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-)
+ReactDOM.render(<Toggle />, document.getElementById('root'))
 ```
 
 **你必须谨慎地对待 JSX 回调函数中的 `this`，在 JavaScript 中，`class` 的方法默认不会绑定 `this`。如果你忘记绑定 `this.handleClick` 并把它传入了 `onClick`，当你调用这个函数的时候 `this` 的值为 `undefined`。**
@@ -97,11 +84,7 @@ class LogginButton extends React.Component {
   }
 
   render() {
-    return (
-      <button onClick={this.handleClick}>
-        Click me
-      </button>
-    )
+    return <button onClick={this.handleClick}>Click me</button>
   }
 }
 ```
@@ -116,17 +99,12 @@ class LogginButton extends React.Component {
 
   render() {
     // 此语法确保 `handleClick` 内的 `this` 已被绑定。
-    return (
-      <button onClick={() => this.handleClick()}>
-        Click me
-      </button>
-    )
+    return <button onClick={() => this.handleClick()}>Click me</button>
   }
 }
 ```
 
 此语法问题在于每次渲染 `LoggingButton` 时都会创建不同的回调函数。在大多数情况下，这没什么问题，但如果该回调函数作为 `props` 传入子组件时，这些组件可能会进行额外的重新渲染。我们通常建议在构造器中绑定或者使用 `class fields` 语法来避免这类性能问题。
-
 
 ### 向事件处理函数传递额外的参数
 

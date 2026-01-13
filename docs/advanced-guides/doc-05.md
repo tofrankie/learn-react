@@ -4,9 +4,8 @@ Ref 转发是一项将 [ref](https://react.docschina.org/docs/refs-and-the-dom.h
 
 这种技术并不常见，通常在以下两种场景中特别有用：
 
-* [转发 refs 到 DOM 组件](https://react.docschina.org/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
-* [在高阶组件中转发 refs](https://react.docschina.org/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
-
+- [转发 refs 到 DOM 组件](https://react.docschina.org/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
+- [在高阶组件中转发 refs](https://react.docschina.org/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
 ## React.forwardRef
 
@@ -23,18 +22,13 @@ const ref = React.createRef()
 // 这时 ref.current 将会指向 <button> DOM 元素
 ```
 
-
 ## 转发 refs 到 DOM 组件
 
 考虑这个渲染原生 DOM 元素 `button` 的 `FancyButton` 组件：
 
 ```jsx
 function FancyButton(props) {
-  return (
-    <button className="FancyButton">
-      {props.children}
-    </button>
-  )
+  return <button className="FancyButton">{props.children}</button>
 }
 ```
 
@@ -193,9 +187,7 @@ function logProps(WrappedComponent) {
   // 可在其渲染函数的第二个参数中拿到，
   // 但注意继续往下传递时，不能通过 ref={ref} 方式传递，由于 LogProps 是 class 组件，
   // 因此其内部 this.props 也拿不到 ref，只能另起名字，比如下面的：forwardedRef。
-  return forwardRef((props, ref) => (
-    <LogProps forwardedRef={ref} {...props} />
-  ))
+  return forwardRef((props, ref) => <LogProps forwardedRef={ref} {...props} />)
 }
 
 export default logProps
