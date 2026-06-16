@@ -27,6 +27,6 @@ class LikeButton extends Component {
 
 document.querySelectorAll('.like_button_container').forEach(domContainer => {
   // Read the comment ID from a data-* attribute.
-  const commentID = parseInt(domContainer.dataset.commentid, 10)
-  ReactDOM.render(createElement(LikeButton, { commentID: commentID }), domContainer)
+  const commentID = Number.parseInt(domContainer.dataset.commentid, 10)
+  ReactDOM.render(createElement(LikeButton, { commentID }), domContainer)
 })

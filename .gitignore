@@ -1,27 +1,37 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Dependency
+node_modules/
+dist/
+.pnpm-store/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Logs
+logs
+*.log
 
-# testing
-/coverage
-
-# production
-/build
-/dist
-
-# misc
+# OS
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+desktop.ini
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Editor
+.vscode/
+.idea/
 
-# customize perference
-dist
+# Cache
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+
+# Test
+coverage/
+
+# Agents
+.agents/
+.codex/
+.claude/
+.cursor/
+
+# Local
+.env
+.env.*
+!.env.example
+*.tgz
+*.vsix

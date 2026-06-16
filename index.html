@@ -1,77 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Add React in One Minute</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Add React in One Minute</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="">
-</head>
-
-<body>
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
     <![endif]-->
 
-  <h2>Add React in One Minute</h2>
-  <p>This page demonstrates using React with no build tooling.</p>
-  <p>React is loaded as a script tag.</p>
+    <h2>Add React in One Minute</h2>
+    <p>This page demonstrates using React with no build tooling.</p>
+    <p>React is loaded as a script tag.</p>
 
-  <p>
-    This is the first comment.
-    <!-- We will put our React component inside this div. -->
-  <div class="like_button_container" data-commentid="1"></div>
-  </p>
+    <div>
+      This is the first comment.
+      <!-- We will put our React component inside this div. -->
+      <div class="like_button_container" data-commentid="1"></div>
+    </div>
 
-  <div id="create"></div>
-  <div id="props"></div>
+    <div id="create"></div>
+    <div id="props"></div>
 
+    <!-- Load React. -->
+    <script src="react/react.development.js"></script>
+    <script src="react/react-dom.development.js"></script>
 
-  <!-- Load React. -->
-  <script src="react/react.development.js"></script>
-  <script src="react/react-dom.development.js"></script>
+    <!-- Load Babel. -->
+    <script src="react/babel.js"></script>
 
-  <!-- Load Babel. -->
-  <script src="react/babel.js"></script>
+    <!-- Load our React component. -->
+    <script src="js/button.js"></script>
+    <script src="js/title.js"></script>
+    <script type="text/babel">
+      function tick() {
+        const element = (
+          <div>
+            <h1>Hello world</h1>
+            <h2>It is {new Date().toLocaleTimeString()}.</h2>
+          </div>
+        )
+        ReactDOM.render(element, document.getElementById('create'))
+      }
 
-  <!-- Load our React component. -->
-  <script src="js/button.js"></script>
-  <script src="js/title.js"></script>
-  <script type="text/babel">
-    function tick() {
-      const element = (
-        <div>
-          <h1>Hello world</h1>
-          <h2>It is {new Date().toLocaleTimeString()}.</h2>
-        </div>
-      )
-      ReactDOM.render(element, document.getElementById('create'))
-    }
-
-    // setInterval(tick, 1000)
-  </script>
-  <script type="text/babel">
-    function Welcome(props) {
+      // setInterval(tick, 1000)
+    </script>
+    <script type="text/babel">
+      function Welcome(props) {
         console.log(props)
         return <h1>Hello, {props.name}</h1>
       }
 
-      const element = (
-        <Welcome name="Frankie" />
-      )
+      const element = <Welcome name="Frankie" />
 
       console.log(element)
-      ReactDOM.render(
-        element,
-        document.getElementById('props')
-      )
-  </script>
-</body>
-
+      ReactDOM.render(element, document.getElementById('props'))
+    </script>
+  </body>
 </html>
