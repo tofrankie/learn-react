@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0)
 
   return (
@@ -24,6 +25,10 @@ function App() {
         <button type="button" className="counter" onClick={() => setCount(count => count + 1)}>
           Count is {count}
         </button>
+        <nav className="route-nav" aria-label="子路由入口">
+          <Link to="/mine">我的</Link>
+          <Link to="/dashboard">管理后台</Link>
+        </nav>
       </section>
 
       <div className="ticks"></div>
@@ -98,5 +103,3 @@ function App() {
     </>
   )
 }
-
-export default App
