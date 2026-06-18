@@ -1,0 +1,21 @@
+{
+  "name": "synthetic-event",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --cache --fix"
+  },
+  "devDependencies": {
+    "@types/react": "^16.14.70",
+    "@types/react-dom": "^16.9.25",
+    "@vitejs/plugin-legacy": "^8.0.2",
+    "@vitejs/plugin-react": "^6.0.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "vite": "^8.0.12"
+  }
+}

@@ -1,0 +1,6 @@
+import { defineConfig } from '@tofrankie/eslint'
+
+export default defineConfig({
+  typescript: false,
+  react: true,
+})
